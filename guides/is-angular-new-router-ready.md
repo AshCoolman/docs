@@ -1,6 +1,6 @@
 # Is angular-new-router ready?
 
-**Use in production?:**
+**Use in production?**
 
 * Now: no
 * 3 months: probably not
