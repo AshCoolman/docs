@@ -8,12 +8,14 @@
 
 **Will it be in Beta?:**
 
-* Yes, as of October 26th - Angular weekly meeting notes [link](https://docs.google.com/document/d/150lerb1LmNLuau_a_EznPV1I1UHMTbEl61t4hZ7ZpS0/edit#)
-> Beta includes
-> * Core
-> * Forms
-> * Router
-> * source
+Yes, as of October 26th - Angular weekly meeting notes [link](https://docs.google.com/document/d/150lerb1LmNLuau_a_EznPV1I1UHMTbEl61t4hZ7ZpS0/edit#)
+
+
+>Beta includes:
+* Core
+* Forms
+* Router
+* source
 
 
 **Latest developments:**
