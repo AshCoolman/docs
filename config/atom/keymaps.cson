@@ -1,0 +1,5 @@
+'atom-text-editor':
+  'ctrl-left': 'editor:move-to-previous-subword-boundary'
+  'ctrl-right': 'editor:move-to-next-subword-boundary'
+  'ctrl-shift-left': 'editor:select-to-previous-subword-boundary'
+  'ctrl-shift-right': 'editor:select-to-next-subword-boundary'
