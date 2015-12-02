@@ -1,8 +1,8 @@
-# Frontend dictionary
+# Practical frontend dictionary
 
 _Updated: 2 Dec '15_
 
-The first place a developer should go when starting a new front-end technology
+Practical info for a developer about to crack open a new frontend technology
 
 ## Webpack
 
@@ -48,3 +48,4 @@ Javascript with types
 
 TypeScript is a super-set of the JavaScript language that introduces types (plus interfaces and new JavaScript features). It allows type-checking during development time with supported editors such as Visual Studio. The compiler requires information about the “shape” of a module in a type-definition-file.
 
+Some contributions first made to the [Simplified JavaScript Jargon](https://github.com/HugoGiraudel/SJSJ)
