@@ -20,6 +20,7 @@ These four concepts are the pre-requisites to writing good protractor tests. The
 ### Jasmine
 
 Your test instructions are written using  Jasmine. Jasmine is a Javascript testing framework made from:
+
 1. a set of principles / code to help you organise your tests (`describe`, `it`, `beforeEach`, `afterEach`, etc)
 1. code to help write expressive tests easily: (`expect(bradPit.eating).toEqual(true)`)
 
@@ -29,6 +30,7 @@ Your test instructions are written using  Jasmine. Jasmine is a Javascript testi
 ## Tech: Writing tests for the browser
 
 Writing tests for a browser has two extra complications, which the remaining technology solves:
+
 1. controlling the browser
 1. understanding what (asynchronous) actions have happened in the browser 
 
@@ -42,6 +44,7 @@ Webdriver has a completely asynchronous API, relying on the language feature *pr
 If you don't have an understanding of promises, you will need to sink some time here:
 
 A quick google:
+
 1. [this reasonably concise explanation](http://12devs.co.uk/articles/promises-an-alternative-way-to-approach-asynchronous-javascript/) by Kishore Nallan
 1. [this jQuery based explanation](http://davidwalsh.name/write-javascript-promises) by Landon Schropp.
 
@@ -49,6 +52,7 @@ A quick google:
 ### Protractor
 
 Node.js app that:
+
 1. wraps webdriverjs (which is a js wrapper for the Webdriver app API)
 1. adapts Jasmine to work better with webdriverjs
 
@@ -107,6 +111,7 @@ describe "Checking selectall, ", ->
 ```
 
 I should emphasies _this works fine_, but it is unnessecary wordy and indenty:
+
 1. `browser.wait()` 
 1. The optional `done` callback variable of `it()`
 1. Setting the promise's `then()` function
@@ -135,6 +140,7 @@ All the code dealing with asynchronity is gone, making it more straight-forward.
 **Danger**: Notice I don't test the attribute *checked* against the string "checked" as it appears in the html (or DOM node). Instead Protractor treats `checked = "checked"` as `checked = true`.
 
 ## Going back to promises
+
 Ok lets try to console.log the input's `checked` attribute:
 
 ```coffee
@@ -174,6 +180,7 @@ describe "Checking selectall, ", ->
 ```
 
 If the output surprises you, let me re-visit the protractor docs on [control flow](http://angular.github.io/protractor/#/control-flow). In particular:
+
 >WebDriverJS (and thus, Protractor) APIs are entirely asynchronous. All functions return promises.
 
 The function returns a promise, so we need to wait until the promise has resolved to output it. Which we can do using `then(cb)`
@@ -199,8 +206,10 @@ describe "Checking selectall, ", ->
 ```
 
 # Conclusion
+
 So there you have it, an example of a protractor test. And some orientation around Jasmine, Protractor and Selenium.
 
 # More
+
 [Good looking tutorial](https://github.com/Droogans/ProtractorPageObjects)
 [Important distinction between element.all vs driver.findElements](https://github.com/angular/protractor/issues/1008) and [when you may use driver.findElements](http://stackoverflow.com/questions/23863563/find-all-visible-elements-using-protractor)
