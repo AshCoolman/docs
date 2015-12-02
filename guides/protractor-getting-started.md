@@ -213,3 +213,5 @@ So there you have it, an example of a protractor test. And some orientation arou
 
 * [Good looking tutorial](https://github.com/Droogans/ProtractorPageObjects)
 * [Important distinction between element.all vs driver.findElements](https://github.com/angular/protractor/issues/1008) and [when you may use driver.findElements](http://stackoverflow.com/questions/23863563/find-all-visible-elements-using-protractor)
+
+_Disclaimer: originally written Dec 2014_
