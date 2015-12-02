@@ -12,8 +12,3 @@ github_username:  AshCoolman
 
 # Build settings
 markdown: kramdown
-
-# Sass settings
-sass:
-    sass_dir: _sass
-    style: :compressed
