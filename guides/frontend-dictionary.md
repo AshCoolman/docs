@@ -48,4 +48,10 @@ Javascript with types
 
 TypeScript is a super-set of the JavaScript language that introduces types (plus interfaces and new JavaScript features). It allows type-checking during development time with supported editors such as Visual Studio. The compiler requires information about the “shape” of a module in a type-definition-file.
 
+**When starting:**
+
+* You don't need `*.tds` files for `*.ts` files, but without them you don't get type-checking
+* You **do** need a `*.tds` file for `*.js` files you import from `*.ts`
+
+
 Some contributions first made to the [Simplified JavaScript Jargon](https://github.com/HugoGiraudel/SJSJ)
