@@ -36,6 +36,12 @@ It is basically a reaction to new language features, and making a framework that
 
 It was also an oppourtunity to reduce the API, and as such the many explicit module types from AngularJS have been replaced with a single everything-is-a-controller component that is _decorated_ with extra functionality_. Services, models and whatever else are regular Javascript objects (classes, functions, object literals etc).
 
+**Should you use it:**
+
+Definately if have an AngularJS brownfield - it is much better.
+
+Unsure if you have a greenfield Angular 2 - it has lots of Features, but as a result lots of API/DSL
+
 ## Typescript
 
 _Updated: 2 Dec '15_
@@ -47,6 +53,10 @@ Javascript with types
 **Nutshell:**
 
 TypeScript is a super-set of the JavaScript language that introduces types (plus interfaces and new JavaScript features). It allows type-checking during development time with supported editors such as Visual Studio. The compiler requires information about the “shape” of a module in a type-definition-file.
+
+**Should you use it:**
+
+Unsure: the tooling is shakey, and it is a large commitment.
 
 **When starting:**
 
