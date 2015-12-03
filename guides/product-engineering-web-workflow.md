@@ -10,8 +10,9 @@ Web applications are growing in scale, and there is allot of emphasis on breakin
 
 Actors:
 
-* PRODUCT empowers STAKEHOLDER
-* ENG empowers PRODUCT
+* STAKEHOLDER has needs ENG doesn't understand
+* PRODUCT empowers ENG with wisdom
+* ENG empowers STAKEHOLDER with functionality
 
 Requirements > tech >  outcome:
 
