@@ -37,38 +37,87 @@ Simple use:
   --beige-grey: beige;
 }
 
-.desidious-sycamore {
+.decidious-sycamore {
   color: val(--leaves-color);
   display: inline-block;
   height: 75px;
   width: 75px;
 }
-.desidious-sycamore::after {
+.decidious-sycamore::after {
   content: ' ';
   background-color: val(--silver-grey);
 }
 
-.desidious-silver-birch {
+.decidious-silver-birch {
   color: val(--leaves-color);
   display: inline-block;
   height: 100px;
   width: 50px;
 }
 
-.desidious-silver-birch::after {
+.decidious-silver-birch::after {
   content: ' ';
   background-color: val(--silver);
 }
 
-.desidious-elder {
+.decidious-elder {
   color: val(--leaves-color);
   display: inline-block;
   height: 50px;
   width: 100px;
 }
 
-.desidious-elder::after {
+.decidious-elder::after {
   content: ' ';
   background-color: val(--beige-grey);
 }
 ```
+
+http://philipwalton.com/articles/why-im-excited-about-native-css-variables/
+
+What preprocessors can't do:
+
+* Can't have logic dynamics
+SASS can only setup "gate" conditions, and then walk away. It can't watch and react to dynamics.
+```
+$gutter: 1em; 
+@media (min-width: 30em) {
+ $gutter: 2em; /* ASSIGNMENT FAILS */
+ text: red; /* Rules applies */
+}
+.thing {
+  padding: $gutter; /* Always 1em */;
+ }
+```
+
+* Cascade: Again, DOM is dynamic, you cannot cascade on DOm element
+```
+$font-size: 1em;
+
+.user-setting-large-text {
+  $font-size: 1.5em; /* this relies on dom element, doesn't exist to SASS */
+}
+body {
+  font-size: $font-size;
+}
+```
+
+* Preprocessor _variables_ don't inherit:
+```
+PSUEDOCODE!!
+.alert { background-color: lightyellow; }
+.alert.info { background-color: lightblue; }
+.alert.error { background-color: orangered; }
+
+.alert button {
+ /* Doesn't work, as it relies on html cascading the color into it*/
+ border-color: darken(background-color, 25%);
+}
+```
+
+Discussion: So this is relient on the structure. Ah I'm starting to see what is going on. You can bake some stuff, so it stays the same, but parametised. But for those occasional, and big styling problems which are based on the dom, we now have great solution. Then, for styling - we get more complexity (and probably some more self-foot-shooting). At very least, javascript will not be the only expressive way to fix some of those other-wise difficult problems.
+
+* Preprocessor variables aren't interoperable: Can't less+sass+postcss
+
+
+
