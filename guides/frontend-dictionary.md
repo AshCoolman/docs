@@ -66,6 +66,11 @@ Unsure: the tooling is shakey, and it is a large commitment.
 
 Some contributions first made to the [Simplified JavaScript Jargon](https://github.com/HugoGiraudel/SJSJ)
 
+## Redux
+
+**One liner:** _Updated: 22 Dec '15_
+
+A small library, that represents changes in state by using pure functions to compose entirely new application states.
 
 ## _Unfinished_
 
