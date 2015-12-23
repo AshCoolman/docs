@@ -3,6 +3,15 @@
 _Updated: 2 Dec '15_
 
 Practical info for a developer about to crack open a new frontend technology
+## React
+
+**One liner:**
+
+A an idiomatic Javascript view layer library with an emphasis on functional programming and minimal manipulation of the DOM.
+
+**Resources:**
+
+- [Airbnb style guide](https://github.com/airbnb/javascript/tree/master/react)
 
 ## Webpack
 
