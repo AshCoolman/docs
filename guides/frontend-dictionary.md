@@ -20,7 +20,25 @@ You can transform the files before they go into the bundle using loaders (e.g. t
 
 ## AngularJS
 
-_To be filled out_
+**One liner:** _Updated: 2 Dec '15_
+
+A framework provides useful, but older functionality when building single page apps. 
+
+**Nutshell:**
+
+Released originally in 2009, Angularjs provided functionality to streamline building single page applications, at a time when organising large-SPAs were becomming common, cross-browser was a bigger time sink, and the Javascript/CSS/HTML specs were only starting to roll out the next generation of features.
+
+In other words there was lots of rough parts of the internet, and the Angular chose the JQuery way, which was to smooth over the rough bits with code (e.g. ajax requests, data-binding), and build the missing parts (e.g. data binding, routing). Some of its functionality has been replaced over the years by new ideas, or new web specs.
+
+**Should you use it:**
+
+Probably not in most cases, as it is an older framework that solved older problems in an older way.
+
+However, if you are considering it, compared to other frameworks it is:
+
+- Unopinionated (unlike Aurelia or Ember): which means its great for small SPAs but the foot-shooting factor is high
+- Augomagic with big API (unlike React which is more idiomatic): easy to get started in, but very hard to master (and hence flow). It has been suggested that Angularjs' high Google trends rating verses React might be because developers constantly need to go back to the Angular docs
+
 
 ## [Angular2](https://github.com/angular/angular/tree/master/modules/angular2)
 
