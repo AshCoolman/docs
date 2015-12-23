@@ -114,3 +114,4 @@ Original sources:
 * [1](http://martinfowler.com/articles/microservice-testing/)
 * [gulp-The vision, history, and future of the project](https://medium.com/@contrahacks/gulp-3828e8126466#.wbsd7nsui)
 * [Angular 2 deps](https://daveceddia.com/angular-2-dependencies-overview/)
+* [Structured programming](http://condor.depaul.edu/sjost/it130/documents/structured.htm)
