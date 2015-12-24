@@ -69,13 +69,17 @@ Definately if have an AngularJS brownfield - it is much better.
 
 Unsure if you have a greenfield Angular 2 - it has lots of Features, but as a result lots of API/DSL
 
+## Babel
+
+**One liner:** _Updated: 24 Dec '15_
+
+A highly configurable, post-es5 javascript transpiler with support for jsx markup, and _inference based_ type-system using inference (via Flow)
+
 ## Typescript
 
-_Updated: 2 Dec '15_
+**One liner:** _Updated: 24 Dec '15_
 
-**One liner:**
-
-Javascript with types
+Post-es5 javascript transpiler, with an _explicit_ type-system that is inbuilt
 
 **Nutshell:**
 
