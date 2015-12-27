@@ -7,7 +7,7 @@ Practical info for a developer about to crack open a new frontend technology
 
 **One liner:**
 
-A an idiomatic Javascript view layer library with an emphasis on functional programming and minimal manipulation of the DOM.
+An idiomatic Javascript view-layer library with an emphasis on functional programming and efficient manipulation of the DOM.
 
 **Resources:**
 
@@ -102,6 +102,12 @@ Some contributions first made to the [Simplified JavaScript Jargon](https://gith
 **One liner:** _Updated: 22 Dec '15_
 
 A small library, that represents changes in state by using pure functions to compose entirely new application states.
+
+## Indexed db
+
+**One liner:** _Updated: 27 Dec '15_
+
+A no-sql database included in all modern browsers.
 
 ## _Unfinished_
 
