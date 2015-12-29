@@ -51,4 +51,12 @@ If you go into the `node_modules` folder, you will see a symlinked folder (which
 
 If it complains, ensure you're' using `"name"` as defined in the `package.json` file.
 
+**Should I use bower?:**
 
+No.
+
+The strategy of maintaining a seperate manifest (bower.json) just for the build files does not seem to have worked. A its better to use Webpack and keep an eye on solutions like [npmcdn](https://npmcdn.com/).
+
+# Sources
+
+* npm publish checklist: http://ericdouglas.github.io/2015/09/27/checklist-for-your-new-open-source-javascript-project/
