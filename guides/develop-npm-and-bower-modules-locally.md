@@ -55,7 +55,7 @@ If it complains, ensure you're' using `"name"` as defined in the `package.json` 
 
 No.
 
-The strategy of maintaining a seperate manifest (bower.json) just for the build files does not seem to have worked. A its better to use Webpack and keep an eye on solutions like [npmcdn](https://npmcdn.com/).
+The strategy of maintaining a built flies and a seperate manifest (bower.json) ontop of npm does not seem to have worked. The solution that I like now is to transform the sources directly using something like Webpack or Gulp. We may get a community "blessed" solution using something like [npmcdn](https://npmcdn.com/) sometime in the future. And even further in the future, ES6 module syntax plus multiplexing will start to reduce the bundling/transformation requirements even further.
 
 # Sources
 
