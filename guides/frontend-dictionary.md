@@ -103,6 +103,55 @@ Some contributions first made to the [Simplified JavaScript Jargon](https://gith
 
 A small library, that represents changes in state by using pure functions to compose entirely new application states.
 
+**In a nutshell:** _Updated: 31 Dec '15_
+
+The first major aspect is a `dispatch({type: SOME_ACTION})` and `subscribe(myStateChangeHandler)` system. State of your app is _only_ changed by a special class of functions called reducers. Reducers have 2 important properties:
+
+1. They never _mutate_, returning newly built objects: This allows reasoning about in + out _without side-effects_
+2. Their signature is _always_ `function name(state, action) {}`, so it makes it easy to compose them:
+```
+  /*
+    Assume the state looks like this:
+    
+    var theState = {
+      _2ndLevel: {
+        count: 0
+      }
+    }
+    
+    If we make this call...
+    
+      dispatch({type: INCR_2ND_LEVEL_COUNT})
+    
+    ...Redux will call:
+    
+      theState = topLevel(theState, action); // action is passed from the dispatch
+    
+  */
+  
+  function _2ndlevel (state, action) {
+    switch (action.type) {
+      case INCR_2ND_LEVEL_COUNT:
+        var newState = Objectd.assign({}, state);
+        newState.count++
+        return newState;
+    }
+  }
+  
+  function topLevel (state, action) {
+    switch (action.type):
+      case INCR_2ND_LEVEL_COUNT:
+        state._2ndLevel = _2ndlevel(state._2ndlevel);
+        
+  }
+```
+
+Reducers, actions, subscribe and dispatch are the core, and you could conceivable just use that. But practically speaking its worth learning the conventions + utility functions to reduce boilerplate / increase expressiveness. From my experience these learnings were interchangable between Angular2 and React.
+
+**Should you use it:**
+
+I've not seen a better solution for Angularjs, and Angular2. For React I've only used component state (Redux is miles better), but I'm not sure how it compares to all the other state management libraries (Flux, Reflux etc)
+
 ## Indexed db
 
 **One liner:** _Updated: 27 Dec '15_
