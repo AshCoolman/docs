@@ -27,4 +27,9 @@
   5. Setup: lay the groundwork for your next commit (checkout new branch, switch to different branch etc)
   6. Revive: `git stash pop` to reveal the uncommited changes
 
-* Find commits with `searchterm` in comment: `git log --grep="searchterm"`
+* Find commits with `searchterm` in comment:
+
+ `git log --grep="searchterm"`
+* Find all commits that modify a certain fail: 
+
+ `git log --follow filename`
