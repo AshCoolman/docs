@@ -38,18 +38,18 @@ Simple use:
 }
 
 .decidious-sycamore {
-  color: val(--leaves-color);
+  color: var(--leaves-color);
   display: inline-block;
   height: 75px;
   width: 75px;
 }
 .decidious-sycamore::after {
   content: ' ';
-  background-color: val(--silver-grey);
+  background-color: var(--silver-grey);
 }
 
 .decidious-silver-birch {
-  color: val(--leaves-color);
+  color: var(--leaves-color);
   display: inline-block;
   height: 100px;
   width: 50px;
@@ -61,7 +61,7 @@ Simple use:
 }
 
 .decidious-elder {
-  color: val(--leaves-color);
+  color: var(--leaves-color);
   display: inline-block;
   height: 50px;
   width: 100px;
@@ -69,7 +69,7 @@ Simple use:
 
 .decidious-elder::after {
   content: ' ';
-  background-color: val(--beige-grey);
+  background-color: var(--beige-grey);
 }
 ```
 
