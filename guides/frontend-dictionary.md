@@ -101,9 +101,13 @@ Some contributions first made to the [Simplified JavaScript Jargon](https://gith
 
 **One liner:** _Updated: 22 Dec '15_
 
-A small library, that represents changes in state by using pure functions to compose entirely new application states.
+Not as powerful as Flux, but much easier.
 
 **In a nutshell:** _Updated: 31 Dec '15_
+
+> It isn’t a real library like React or Relay. It’s a glorified global state event emitter! - [@dan_abramov](https://twitter.com/dan_abramov/status/678419254937526272)
+
+A small library, that represents changes in state by using pure functions to compose entirely new application states.
 
 The first major aspect is a `dispatch({type: SOME_ACTION})` and `subscribe(myStateChangeHandler)` system. State of your app is _only_ changed by a special class of functions called reducers. Reducers have 2 important properties:
 
