@@ -101,7 +101,7 @@ Some contributions first made to the [Simplified JavaScript Jargon](https://gith
 
 **One liner:** _Updated: 22 Dec '15_
 
-Not as powerful as Flux, but much easier.
+Client-side state managemer: not as powerful as Flux, but much easier
 
 **In a nutshell:** _Updated: 31 Dec '15_
 
