@@ -33,3 +33,9 @@
 * Find all commits that modify a certain fail: 
 
  `git log --follow filename`
+
+
+## Resources
+
+[Git FAQ](https://git.wiki.kernel.org/index.php/Git_FAQ#Why_the_.27Git.27_name.3F): this is _actually_ good
+[Stackoverflow: Difference between HEAD / Working Tree / Index in Git](http://stackoverflow.com/questions/3689838/difference-between-head-working-tree-index-in-git)
