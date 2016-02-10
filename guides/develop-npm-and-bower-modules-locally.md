@@ -4,6 +4,7 @@ type: guide
 title: Develop npm and bower modules locally
 permalink: /guides/develop-npm-and-bower-modules-locally
 ---
+
 # Developing a node component locally
 
 **feedback welcome!**
@@ -52,9 +53,18 @@ Now you can link it:
 npm link <module-name>
 ```
 
-If you go into the `node_modules` folder, you will see a symlinked folder (which is linked to your module project folder)
+If you go into the `node_modules` folder, you will see a symlinked folder (which is linked to your module projec
+t folder)
 
 
 If it complains, ensure you're' using `"name"` as defined in the `package.json` file.
 
+**Should I use bower?:**
 
+No.
+
+The strategy of maintaining a built flies and a seperate manifest (bower.json) ontop of npm does not seem to have worked. The solution that I like now is to transform the sources directly using something like Webpack or Gulp. We may get a community "blessed" solution using something like [npmcdn](https://npmcdn.com/) sometime in the future. And even further in the future, ES6 module syntax plus multiplexing will start to reduce the bundling/transformation requirements even further.
+
+# Sources
+
+* npm publish checklist: http://ericdouglas.github.io/2015/09/27/checklist-for-your-new-open-source-javascript-project/
