@@ -183,7 +183,10 @@ A no-sql database included in all modern browsers.
 
 Unit tests:
 
-* exercise the smallest pieces of testable software in the application to determine whether they behave as expected.
+* exercise the smallest bits of testable software to check they behave as expected
+* Assess the implementation
+* Individual units (methods)
+* want to construct a test set that satisfy a coverage criteria, structural
 
 Integration tests:
 
