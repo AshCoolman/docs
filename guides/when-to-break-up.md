@@ -1,72 +1,72 @@
 Decision tree when considering splitting up your a file into smaller ones
 
-Will you ever use this in another project?
+	Will you ever use this in another project?
 
-	Yes:
-	Are there any natural foreseeable dependencies shared with the current project?
-
-		No:
-		Is it a method or less?
+		Yes:
+		Are there any natural foreseeable dependencies shared with the current project?
 
 			No:
-			_Package it_ probably
+			Is it a method or less?
 
-			Yes:
-			Will you use it often?
+				No:
+				_Package it_ probably
 
 				Yes:
-				Is the equivalent on npmjs?
+				Will you use it often?
 
 					Yes:
-					_Use npmjs package_
+					Is the equivalent on npmjs?
+
+						Yes:
+						_Use npmjs package_
+
+						No:
+						_Package it_
 
 					No:
-					_Package it_
-
-				No:
-				_Modulise it for now_
-
-		Yes:
-		Will this module end up more than 300 LOC
+					_Modulise it for now_
 
 			Yes:
-			Can you be bothered versioning it right now?
+			Will this module end up more than 300 LOC
 
 				Yes:
-				Can you be bothered maintaining the dependency semver in dependent projects?
+				Can you be bothered versioning it right now?
 
-					Yes: 
-					_Package it_
+					Yes:
+					Can you be bothered maintaining the dependency semver in dependent projects?
+
+						Yes: 
+						_Package it_
+
+						No:
+						_Package it with npm link_
 
 					No:
-					_Package it with npm link_
+					_Modulise it, until warrents packagng_
 
 				No:
-				_Modulise it, until warrents packagng_
-
-			No:
-			_Modulise it_
-
-	No:
-	Is it over 80 lines?
+				_Modulise it_
 
 		No:
-		Is it a single concern
-
-			Yes:
-			_Leave it_
+		Is it over 80 lines?
 
 			No:
-			Are the division of concern clear to you now?
-
-				No:
-				Keep thinking about it as you work on it, then try to split it after
+			Is it a single concern
 
 				Yes:
-				Split the file
+				_Leave it_
 
-		Yes:
-		Is it over 120 lines?
+				No:
+				Are the division of concern clear to you now?
+
+					No:
+					Keep thinking about it as you work on it, then try to split it after
+
+					Yes:
+					Split the file
 
 			Yes:
-			Split the file into multiple files
+			Is it over 120 lines?
+
+				Yes:
+				Split the file into multiple files
