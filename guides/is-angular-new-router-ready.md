@@ -1,5 +1,3 @@
-# Is angular-new-router ready?
-
 **Use in production?**
 
 * Now: no
@@ -12,6 +10,7 @@ Yes, as of October 26th - Angular weekly meeting notes [link](https://docs.googl
 
 
 >Beta includes:
+
 * Core
 * Forms
 * Router
