@@ -1,3 +1,0 @@
-# Docs
-
-My web docs
