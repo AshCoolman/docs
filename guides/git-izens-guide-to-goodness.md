@@ -1,5 +1,3 @@
-# A Git-izens guide to goodness
-
 ## Guidelines
 
 * Keep remote clean:
@@ -13,6 +11,7 @@
   * Where possible squash your "partial" commits into nice understandable units of functionality `rebase`
 
 * Commit messages:
+
   * Short, have context, understandable 1 year later
   * fix: when you achieve a branch outcome
   
@@ -30,10 +29,10 @@
 * Find commits with `searchterm` in comment:
 
  `git log --grep="searchterm"`
+
 * Find all commits that modify a certain fail: 
 
  `git log --follow filename`
-
 
 ## Resources
 
