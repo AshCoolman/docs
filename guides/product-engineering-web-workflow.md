@@ -1,5 +1,3 @@
-# Product and engineering web workflow
-
 ## Intro
 
 Web applications are growing in scale, and there is allot of emphasis on breaking up functionality (modules, packages) and having well-tested, reusable components. There are also great UI frameworks that greatly increase speed - at the cost of investing in their design language (Material UI, Bootstrap, etc).
