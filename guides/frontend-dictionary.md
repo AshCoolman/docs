@@ -1,8 +1,19 @@
-# Practical frontend dictionary
-
 _Updated: 2 Dec '15_
 
 Practical info for a developer about to crack open a new frontend technology
+
+## Bower
+
+**One liner:**
+
+A package manager for front-end, inspired by npm
+
+**Should you use it:**
+
+*No.*
+
+Bower's strategy of maintaining a pre-built flies and a seperate manifest (bower.json), ontop of npm's package.json has not  worked. You can use npm's `postinstall` to acheive the same result. Normally I transform the sources directly using something like Webpack or Gulp. We may get a community "blessed" solution using something like [npmcdn](https://npmcdn.com/) sometime in the future. And even further in the future, ES6 module syntax plus multiplexing will start to reduce the bundling/transformation requirements even further.
+
 ## React
 
 **One liner:**
