@@ -1,3 +1,10 @@
+---
+layout: page
+type: guide
+title: Git-izenʼs guide to goodness
+permalink: /guides/git-izens-guide-to-goodness/
+---
+
 # A Git-izens guide to goodness
 
 ## Guidelines

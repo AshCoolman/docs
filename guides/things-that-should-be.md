@@ -1,3 +1,9 @@
+---
+layout: page
+type: guide
+title: Things that should be
+permalink: /guides/things-that-should-be/
+---
 # Things that should be
 
 Spellchecks should be context-aware

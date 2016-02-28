@@ -1,3 +1,9 @@
+---
+layout: page
+type: guide
+title: When to break up
+permalink: /guides/when-to-break-up/
+---
 # When to break up
 
 Decision tree when considering splitting up your a file into smaller ones

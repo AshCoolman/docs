@@ -2,7 +2,7 @@
 layout: page
 type: guide
 title: Angular styleguide
-permalink: /guides/angular-styleguide
+permalink: /guides/angular-styleguide/
 ---
 
 ## Principles

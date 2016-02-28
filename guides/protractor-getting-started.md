@@ -1,3 +1,9 @@
+---
+layout: page
+type: guide
+title: Protractor getting started
+permalink: /guides/protractor-getting-started/
+---
 # Introduction   
 ## Case for mid-level understanding
 Writing Protractor tests can be deceptively simple. You can jump into writing tests using the syntax from [Protractor tutorial](http://angular.github.io/protractor/#/tutorial) but *eventually* you will need a deeper understanding.

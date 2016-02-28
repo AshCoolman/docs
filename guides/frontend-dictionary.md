@@ -1,3 +1,10 @@
+---
+layout: page
+type: guide
+title: Angular styleguide
+permalink: /guides/frontend-dictionary/
+---
+
 # Practical frontend dictionary
 
 _Updated: 2 Dec '15_

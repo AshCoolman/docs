@@ -1,3 +1,10 @@
+---
+layout: page
+type: guide
+title: Angular styleguide
+permalink: /guides/frontend-news/
+---
+
 # Tech news
 
 1. [ecmascriptkicks](http://www.ecmascriptkicks.com/)

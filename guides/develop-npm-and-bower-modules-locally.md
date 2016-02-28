@@ -2,7 +2,7 @@
 layout: page
 type: guide
 title: Develop npm and bower modules locally
-permalink: /guides/develop-npm-and-bower-modules-locally
+permalink: /guides/develop-npm-and-bower-modules-locally/
 ---
 
 # Developing a node component locally

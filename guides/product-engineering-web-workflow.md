@@ -1,3 +1,9 @@
+---
+layout: page
+type: guide
+title: Product and engineering web workflow
+permalink: /guides/product-engineering-web-workflow/
+---
 # Product and engineering web workflow
 
 ## Intro

@@ -1,4 +1,10 @@
-# Is angular-new-router ready?
+---
+layout: page
+type: guide
+title: Is angular-new-router ready
+permalink: /guides/is-angular-new-router-ready/
+---
+# Is angular-new-router ready? _1st Dec_
 
 **Use in production?**
 
