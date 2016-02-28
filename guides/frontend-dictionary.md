@@ -182,6 +182,11 @@ For a deeper look, checkout [this video](https://www.youtube.com/watch?v=xsSnOQy
 
 I've not seen a better solution for Angularjs, and Angular2. For React I've only used component state (Redux is miles better), but I'm not sure how it compares to all the other state management libraries (Flux, Reflux etc)
 
+**Resources**:
+
+* [SO : Why use redux over facebook flux](http://stackoverflow.com/questions/32461229/why-use-redux-over-facebook-flux)
+
+
 ## Indexed db
 
 **One liner:** _Updated: 27 Dec '15_
@@ -192,7 +197,10 @@ A no-sql database included in all modern browsers.
 
 Unit tests:
 
-* exercise the smallest pieces of testable software in the application to determine whether they behave as expected.
+* exercise the smallest bits of testable software to check they behave as expected
+* Assess the implementation
+* Individual units (methods)
+* want to construct a test set that satisfy a coverage criteria, structural
 
 Integration tests:
 
