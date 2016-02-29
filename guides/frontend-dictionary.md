@@ -11,6 +11,18 @@ _Updated: 2 Dec '15_
 
 Practical info for a developer about to crack open a new frontend technology
 
+## Bower
+
+**One liner:**
+
+A package manager for front-end, inspired by npm
+
+**Should you use it:**
+
+*No.*
+
+Bower's strategy of maintaining a pre-built flies and a seperate manifest (bower.json), ontop of npm's package.json has not  worked. You can use npm's `postinstall` to acheive the same result. Normally I transform the sources directly using something like Webpack or Gulp. We may get a community "blessed" solution using something like [npmcdn](https://npmcdn.com/) sometime in the future. And even further in the future, ES6 module syntax plus multiplexing will start to reduce the bundling/transformation requirements even further.
+
 ## React
 
 **One liner:**
@@ -103,7 +115,6 @@ Unsure: the tooling is shakey, and it is a large commitment.
 * You don't need `*.tds` files for `*.ts` files, but without them you don't get type-checking
 * You **do** need a `*.tds` file for `*.js` files you import from `*.ts`
 
-
 Some contributions first made to the [Simplified JavaScript Jargon](https://github.com/HugoGiraudel/SJSJ)
 
 ## Redux
@@ -177,7 +188,6 @@ Note: You can enforce immutability with [a library](https://facebook.github.io/i
 
 For a deeper look, checkout [this video](https://www.youtube.com/watch?v=xsSnOQynTHs) by Dan Abramov (the creator).
 
-
 **Should you use it:**
 
 I've not seen a better solution for Angularjs, and Angular2. For React I've only used component state (Redux is miles better), but I'm not sure how it compares to all the other state management libraries (Flux, Reflux etc)
@@ -185,7 +195,6 @@ I've not seen a better solution for Angularjs, and Angular2. For React I've only
 **Resources**:
 
 * [SO : Why use redux over facebook flux](http://stackoverflow.com/questions/32461229/why-use-redux-over-facebook-flux)
-
 
 ## Indexed db
 

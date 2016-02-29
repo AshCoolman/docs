@@ -9,11 +9,13 @@ permalink: /guides/angular-styleguide/
 
 ### Minimise API
 
-Angular (esp. 1) has a large API, a lots of magic. Surely part of the reason Angular _google trends_ higher than, React, is because Angular devs need to keep referring to the Angular docs. Angular has enough magical [DSL](https://www.google.co.uk/#q=Domain+specific+language+DSL+pattern+angular), resist adding anything by plain idiomatic JavaScript to allow more dev flow.
+Angular (esp. 1) has a large enough API and [DSL](https://www.google.co.uk/#q=Domain+specific+language+DSL+pattern+angular) already. Infact it has been suggested the reason Angular _google trends_ higher than React, is because Angular devs need to constantly google the docs. There is enough magic, resist adding anything except plain idiomatic JavaScript.
 
-### Atomise into modules and packages
+### ES6 modules
 
-This means Angular 2 as a preference (avoiding module-via-library and embracing module-via-syntax) 
+Angular 1: provides it's own module system (pre-ES6 module spec) - avoid it and use ES6 module system
+Angular 2: Expects you to just use the ES6 spec
+
 e.g. Bad `angular.module('angular-only-module-system')`, Good `import * as myPackage from 'my-package'`
 
 
@@ -22,19 +24,18 @@ e.g. Bad `angular.module('angular-only-module-system')`, Good `import * as myPac
 
 ### Lanuages
 
-
-1. *ES5*: Strong no
-1. *Babel*: Seems like you have everything you need
-1. *Typescript*: Seems like you have everything you need, more awkwardly, but with the power of typing, but with the cost of having to set Ambient types to get the compiler to shut up etc.
-1. *Coffeescript*: I've not yet googled a nice [decorator solution](https://github.com/rstuven/es-decorate) but I think business logic (which should be in services completely apart form the angular code) should be fine.
+1. *Typescript*: Angular 2 built with typescript so it is the obvious choice
+1. *Babel*: Babel is good, though it's a bit of a wild ride (Decorators in and then out, painful transition from v5-v6)
+1. *ES5*: Limiting yourself to ES5 will cause more boilerplate
+1. *Coffeescript*: I've not yet googled a nice [decorator solution](https://github.com/rstuven/es-decorate) but I think business logic (which should be in services completely apart form the angular code) should be fine
 
 ## Components 
 
 ### General design
 
-1. Minor components (most): Dumb and stateless (except through property & events) - think regular Web components like `<input>`, `<video>`
+1. Minor components (most in number): Dumb and stateless (except through property & events) - think regular Web components like `<input>`, `<video>`
 
-2. Major (as few as possible): Co-ordinate intra-component comms, provides state (reflected in Minor components), reacts to events and sets store
+2. Major (least in number): Co-ordinate intra-component comms, provides state (reflected in Minor components), reacts to events and sets store
 
 ### Angular 1
 
@@ -88,13 +89,9 @@ class {
 
 [More info](http://toddmotto.com/exploring-the-angular-1-5-component-method/)
 
-### Angular 2: Make it look like es6 modules
-
-Just do it
-
 ## Naming conventions
 
-John papa style guide
+John papa style guide is a good place to start
 
 ## Folder structure
 
