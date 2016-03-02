@@ -1,15 +1,15 @@
 
 ## Principles
 
-### Which version of Angular?
-
-Angular 2 should be used for all green field projects.
-
 ### Minimise API
 
 Angular has enough API and [DSL](https://www.google.co.uk/#q=Domain+specific+language+DSL+pattern+angular) already. You should **resist adding anything except plain idiomatic JavaScript**. It has been suggested the reason Angular _google trends_ higher than React, is because Angular devs need to constantly google the docs.
 
 ## Guidance
+
+### Which version of Angular?
+
+Angular 2 should be used for all green field projects.
 
 ### Lanuages
 
