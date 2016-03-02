@@ -1,80 +1,20 @@
----
-layout: page
-type: guide
-title: When to break up
-permalink: /guides/when-to-break-up/
----
-# When to break up
 
-Decision tree when considering splitting up your a file into smaller ones
-
-	Will you ever use this in another project?
-
-		Yes:
-		Are there any natural foreseeable dependencies shared with the current project?
-
-			No:
-			Is it a method or less?
-
-				No:
-				_Package it_ probably
-
-				Yes:
-				Will you use it often?
-
-					Yes:
-					Is the equivalent on npmjs?
-
-						Yes:
-						_Use npmjs package_
-
-						No:
-						_Package it_
-
-					No:
-					_Modulise it for now_
-
-			Yes:
-			Will this module end up more than 300 LOC
-
-				Yes:
-				Can you be bothered versioning it right now?
-
-					Yes:
-					Can you be bothered maintaining the dependency semver in dependent projects?
-
-						Yes: 
-						_Package it_
-
-						No:
-						_Package it with npm link_
-
-					No:
-					_Modulise it, until warrents packagng_
-
-				No:
-				_Modulise it_
-
-		No:
-		Is it over 80 lines?
-
-			No:
-			Is it a single concern
-
-				Yes:
-				_Leave it_
-
-				No:
-				Are the division of concern clear to you now?
-
-					No:
-					Keep thinking about it as you work on it, then try to split it after
-
-					Yes:
-					Split the file
-
-			Yes:
-			Is it over 120 lines?
-
-				Yes:
-				Split the file into multiple files
+1. **Should I start spliting this file up?**
+    1. How many lines is it?
+        1.  80<? **Then** yes, if its stable
+        1.  ~80? **Then** yes, if there are low hanging fruit
+        1. 120+? **Then** yes
+    1. Is there a decent npmjs package you could?
+        1. Yes? **Then** yes
+    1. Is this code part of a more complicated system?
+        1. Yes? **Then** yes, you need well defined interfaces/APIs
+1. **Which strategy should I use?**
+    1. Is the code only going to be used in the current project?
+        1. Yes? Is the file less than 10 lines?
+            1. Yes? **Then** create a catch-all module for all helper/util functions/values
+            1. No? Is it single concern?
+                1. Yes? **Then** split it out reusable services, and leave in biz logic
+                1. No? **Then** take the time to split into different modules
+        1. No? Are other components relying on its API _right now_?
+            1. No? **Then** make a local package with `npm link` until it has stabilised
+            1. Yes? **Then** make a proper semver'd packge
