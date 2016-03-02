@@ -49,4 +49,4 @@ If it complains, ensure you're' using `"name"` as defined in the `package.json` 
 
 # Sources
 
-* npm publish checklist: http://ericdouglas.github.io/2015/09/27/checklist-for-your-new-open-source-javascript-project/
+* [npm publish checklist](http://ericdouglas.github.io/2015/09/27/checklist-for-your-new-open-source-javascript-project/)
