@@ -1,7 +1,7 @@
 ---
 layout: page
 type: guide
-title: Angular styleguide
+title: Frontend dictionary
 permalink: /guides/frontend-dictionary/
 ---
 
@@ -51,7 +51,7 @@ You can transform the files before they go into the bundle using loaders (e.g. t
 
 **One liner:** _Updated: 2 Dec '15_
 
-A framework provides useful, but older functionality when building single page apps. 
+A framework provides useful, but older functionality when building single page apps.
 
 **Nutshell:**
 
@@ -78,7 +78,7 @@ The successor to AngularJS.
 
 **Nutshell:**
 
-It is basically a reaction to new language features, and making a framework that will neatly fit into the future web. Some examples of the large differences include replacing bespoke-module code Javascript module syntax, improving speed by using observables rather than dirty-checking, and introducing a web-component friendly templating syntax. 
+It is basically a reaction to new language features, and making a framework that will neatly fit into the future web. Some examples of the large differences include replacing bespoke-module code Javascript module syntax, improving speed by using observables rather than dirty-checking, and introducing a web-component friendly templating syntax.
 
 It was also an oppourtunity to reduce the API, and as such the many explicit module types from AngularJS have been replaced with a single everything-is-a-controller component that is _decorated_ with extra functionality_. Services, models and whatever else are regular Javascript objects (classes, functions, object literals etc).
 
@@ -135,7 +135,7 @@ Reducers, actions, subscribe and dispatch are the core, and you could conceivabl
 
 Redux does not represent changes in your application's state by modifying objects ( as you would with object-oriented paradigms). Instead changes are represented as the difference between the input object and the output object (`var output = reducer(input)`). If you mutate either `input` or `output` you invalidate the state.
 
-To sum up another way, Redux represents state as "frozen object snapshots". With these discrete _snapshots_ you can save your state at a point, reverse state, and generally have more "accounting" for all state changes. 
+To sum up another way, Redux represents state as "frozen object snapshots". With these discrete _snapshots_ you can save your state at a point, reverse state, and generally have more "accounting" for all state changes.
 
 State of your app is _only_ changed by a category of pure functions called reducers. Reducers have 2 important properties:
 
@@ -143,13 +143,13 @@ State of your app is _only_ changed by a category of pure functions called reduc
 2. Their signature is _always_ `function name(state, action) {}`, so it makes it easy to compose them:
 
 Assume the state looks like this:
-        
+
         var theState = {
           _2ndLevel: {
             count: 0
           }
         }
-        
+
 We want to increment the count, so we make these reducers
 
     const INCR_2ND_LEVEL_COUNT = 'incr2NdLevelCount';
@@ -162,7 +162,7 @@ We want to increment the count, so we make these reducers
                 return newState;
             }
         }
-      
+
     function topLevel (state, action) {
         switch (action.type) {
             case INCR_2ND_LEVEL_COUNT:
@@ -173,17 +173,17 @@ We want to increment the count, so we make these reducers
 Note the use of `Objectd.assign({}, ...)` to create an entirely new objects in _each_ reducer:
 
 Assuming we have wired up Redux to these reducers, then if we use Redux's event system to trigger a state change ...
-        
+
         dispatch({type: INCR_2ND_LEVEL_COUNT})
-        
+
 ...Redux will call:
-        
+
         theNewState = topLevel(theState, action);
-        
+
 NOTE: `action` is from `dispatch()`
 
-Now `theNewState` is an *entirely new object*. 
-        
+Now `theNewState` is an *entirely new object*.
+
 Note: You can enforce immutability with [a library](https://facebook.github.io/immutable-js/) (or [new language features](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze)), or just be careful to not mutate anything :D
 
 For a deeper look, checkout [this video](https://www.youtube.com/watch?v=xsSnOQynTHs) by Dan Abramov (the creator).

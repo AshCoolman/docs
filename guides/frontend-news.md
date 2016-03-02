@@ -1,7 +1,7 @@
 ---
 layout: page
 type: guide
-title: Angular styleguide
+title: Frontend news
 permalink: /guides/frontend-news/
 ---
 

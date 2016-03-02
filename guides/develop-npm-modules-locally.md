@@ -1,8 +1,15 @@
+---
+layout: page
+type: guide
+title: Develop npm modules locally
+permalink: /guides/develop-npm-modules-locally/
+---
+
 ## Intro
 
 This is how you develop node modules locally, while retaining npm tooling/linking behavior for your a _Main project_.
 
-This guide assumes you have your app in a folder on your drive, running the node componengt that was `npm i`'d. 
+This guide assumes you have your app in a folder on your drive, running the node componengt that was `npm i`'d.
 
 1. *Git clone the node module onto your hard drive*
 

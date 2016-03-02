@@ -1,7 +1,7 @@
 ---
 layout: page
 type: guide
-title: When to break up
+title: When to break up that Javascript file
 permalink: /guides/when-to-break-up/
 ---
 

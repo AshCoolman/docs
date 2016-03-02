@@ -1,11 +1,9 @@
 ---
 layout: page
 type: guide
-title: Git-izenʼs guide to goodness
+title: Gitizenʼs guide to goodness
 permalink: /guides/git-izens-guide-to-goodness/
 ---
-
-# A Git-izens guide to goodness
 
 ## Guidelines
 
@@ -13,7 +11,7 @@ permalink: /guides/git-izens-guide-to-goodness/
 
   * Only put something on the remote if you want others to see it
   * Delete branches once they are merged (or you no longer intend them to be merged)
-  
+
 * Branches/PR's tell a story:
 
   * Branch off often, and with a specific goal in mind
@@ -23,7 +21,7 @@ permalink: /guides/git-izens-guide-to-goodness/
 
   * Short, have context, understandable 1 year later
   * fix: when you achieve a branch outcome
-  
+
 ## Tips
 
 * Got various changes, and you want to test & commit in isolation?
@@ -39,7 +37,7 @@ permalink: /guides/git-izens-guide-to-goodness/
 
  `git log --grep="searchterm"`
 
-* Find all commits that modify a certain fail: 
+* Find all commits that modify a certain fail:
 
  `git log --follow filename`
 
