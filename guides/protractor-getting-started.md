@@ -1,10 +1,13 @@
 # Introduction   
+
 ## Case for mid-level understanding
+
 Writing Protractor tests can be deceptively simple. You can jump into writing tests using the syntax from [Protractor tutorial](http://angular.github.io/protractor/#/tutorial) but *eventually* you will need a deeper understanding.
 
 This article will bridge the gap between your first tests and the deeper understanding contained in the [Protractor docs](http://angular.github.io/protractor/#/toc)
 
 ## Prerequisites:
+
 These four concepts are the pre-requisites to writing good protractor tests. They are briefly listed here, but also inserted with more detail further down. I encourage you to stop at each "_research point_" below, and have a little read.
 
 1. Jasmine
