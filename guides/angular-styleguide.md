@@ -22,9 +22,9 @@ Angular 2 should be used for all green field projects.
 
 ### General design
 
-1. Minor components (most in number): Dumb and stateless (except through property & events) - think regular Web components like `<input>`, `<video>`
+1. **Minor components (most in number)**: Dumb and stateless (except through property & events) - think regular Web components like `<input>`, `<video>`
 
-2. Major (least in number): Co-ordinate intra-component comms, provides state (reflected in Minor components), reacts to events and sets store
+2. **Major (least in number)**: Co-ordinate intra-component comms, provides state (reflected in Minor components), reacts to events and sets store
 
 ### Angular 1
 
@@ -80,7 +80,7 @@ class {
 
 ## Style guide
 
-John papa style guide is a good place to start
+[John papa style guide](https://github.com/johnpapa/angular-styleguide) is a good place to start
 
 ## Folder structure
 
