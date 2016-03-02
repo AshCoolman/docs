@@ -1,3 +1,9 @@
+---
+layout: page
+type: guide
+title: When to break up
+permalink: /guides/when-to-break-up/
+---
 
 1. **Should I start spliting this file up?**
     1. How many lines is it?
