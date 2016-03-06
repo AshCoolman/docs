@@ -34,7 +34,13 @@
 
  `git log --follow filename`
 
+* Add files interactively:
+
+ `git add -i`
+
+
 ## Resources
 
+* [Git guide](http://rogerdudler.github.io/git-guide/)
 * [Git FAQ](https://git.wiki.kernel.org/index.php/Git_FAQ#Why_the_.27Git.27_name.3F): this is _actually_ good
 * [Stackoverflow: Difference between HEAD / Working Tree / Index in Git](http://stackoverflow.com/questions/3689838/difference-between-head-working-tree-index-in-git)
