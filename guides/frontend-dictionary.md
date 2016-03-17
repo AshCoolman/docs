@@ -188,7 +188,9 @@ I've not seen a better solution for Angularjs, and Angular2. For React I've only
 
 * [SO : Why use redux over facebook flux](http://stackoverflow.com/questions/32461229/why-use-redux-over-facebook-flux)
 
+## Elm
 
+**One liner:**
 ## Indexed db
 
 **One liner:** _Updated: 27 Dec '15_
