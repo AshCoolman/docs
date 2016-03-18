@@ -191,6 +191,15 @@ I've not seen a better solution for Angularjs, and Angular2. For React I've only
 ## Elm
 
 **One liner:**
+
+A functional-language with a nice terse syntax, which compiles to javascript, allowing functional programming in the browser
+
+**Resources:**
+
+* [http://elm-lang.org/](http://elm-lang.org/)
+* [Architecture tutorial](https://github.com/evancz/elm-architecture-tutorial)
+* [Community curated list](https://github.com/isRuslan/awesome-elm)
+
 ## Indexed db
 
 **One liner:** _Updated: 27 Dec '15_
