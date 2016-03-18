@@ -1,6 +1,7 @@
 # Similar work
 
 * [State of the art javascript in 2016](https://medium.com/javascript-and-opinions/state-of-the-art-javascript-in-2016-ab67fc68eb0b)
+* [Simplified JavaScript Jargon](https://github.com/HugoGiraudel/SJSJ)
 
 # Technologies
 
