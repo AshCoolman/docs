@@ -1,3 +1,9 @@
+# Similar work
+
+* [State of the art javascript in 2016](https://medium.com/javascript-and-opinions/state-of-the-art-javascript-in-2016-ab67fc68eb0b)
+
+# Technologies
+
 _Updated: 2 Dec '15_
 
 Practical info for a developer about to crack open a new frontend technology
@@ -187,8 +193,11 @@ I've not seen a better solution for Angularjs, and Angular2. For React I've only
 **Resources**:
 
 * [SO : Why use redux over facebook flux](http://stackoverflow.com/questions/32461229/why-use-redux-over-facebook-flux)
+* [Handcrafting an isomorphic redux application with love](https://medium.com/front-end-developers/handcrafting-an-isomorphic-redux-application-with-love-40ada4468af4)
 
-## Elm
+## Elm 
+
+_Updated 11th Mar 2016_
 
 **One liner:**
 
