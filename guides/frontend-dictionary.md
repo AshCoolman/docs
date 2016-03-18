@@ -1,14 +1,14 @@
-# Similar work
+
+# Frontend dictionary
+
+Practical info for a developer about to crack open a new frontend technology
+
+## Similar work
 
 * [State of the art javascript in 2016](https://medium.com/javascript-and-opinions/state-of-the-art-javascript-in-2016-ab67fc68eb0b)
 * [Simplified JavaScript Jargon](https://github.com/HugoGiraudel/SJSJ)
 * [frontendhandbook.com](http://www.frontendhandbook.com/)
 
-# Technologies
-
-_Updated: 2 Dec '15_
-
-Practical info for a developer about to crack open a new frontend technology
 
 ## Bower
 
