@@ -9,6 +9,23 @@ Practical info for a developer about to crack open a new frontend technology
 * [Simplified JavaScript Jargon](https://github.com/HugoGiraudel/SJSJ)
 * [frontendhandbook.com](http://www.frontendhandbook.com/)
 
+## Bash
+
+**One liner:**
+
+Unix shell & command language that ships with OSX
+
+**Should you use it:**
+
+Probably;
+
+It is handy. But its hard to understand if you don't understand the commands and flags being used.
+
+Generally. if there is already a nice package (npm, homebrew), switch to that.
+
+**Resources:**
+
+* [Bash script mode](http://redsymbol.net/articles/unofficial-bash-strict-mode/)
 
 ## Bower
 
