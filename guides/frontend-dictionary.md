@@ -133,6 +133,10 @@ Unsure: the tooling is shakey, and it is a large commitment.
 
 Some contributions first made to the [Simplified JavaScript Jargon](https://github.com/HugoGiraudel/SJSJ)
 
+**Resources:**
+
+* [Typescript deep dive gitbook](https://basarat.gitbooks.io/typescript/content/index.html
+
 ## Redux
 
 **One liner:** _Updated: 22 Dec '15_
