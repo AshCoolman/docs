@@ -224,7 +224,33 @@ _Updated 11th Mar 2016_
 
 **One liner:**
 
-A functional-language with a nice terse syntax, which compiles to javascript, allowing functional programming in the browser
+Functional language designed for the web
+
+
+
+**In a nutshell**
+
+- _pure functional-language_:
+        Because it is [_pure_](https://www.google.co.uk/search?q=pure+function), it means the only "[side-effect](http://eloquentjavascript.net/03_functions.html#h_EdyBGBF6y/)" is that pure flows, like `(Action) -> Model -> Update -> View`, are much neater than can be achieved with Javascript.
+- _statically-typed_:
+        The static type checker is something like Typescript's but because is more specialised/simple (only functional), it use is much less of a cognitive burden.
+- _terse syntax_:
+        The syntax at first seems odd when you are looking through the Javascript lens. But once you start using it, you will find many syntactic convieniances and freebies that make it a joy to use. It is kind of like a non-mathsy version of Haskell, built spefically for the web. 
+- _Reactive_:
+        It uses [signals](https://github.com/yang-wei/elmflux) (like [js observables](https://gist.github.com/staltz/868e7e9bc2a7b8c1f754)) which just means changes or recorded on a timeline (array). Which is convienice in functional programming, as that array can be transformed in various ways e.g. Did the user double click? = Are there two click events within 200ms of each other _within the Signal_.
+- _compiles to javascript_:
+        You can setup workflows with gulp/webpack etc to write part or all of your applications in Elm
+
+
+
+
+
+
+**Should you use it:**
+
+You should _learn_ it, as as of the now (April '16) it is where javascript is heading.
+
+I've not used it in production, but it see here for a [case study](http://tech.noredink.com/post/126978281075/walkthrough-introducing-elm-to-a-js-web-app) where 3% of business logic is elm.
 
 **Resources:**
 
