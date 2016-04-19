@@ -149,7 +149,7 @@ Client-side state managemer: not as powerful as Flux, but much easier
 
 Redux is a small library that represents state as (immunatable) objects. And _new states_ by passing the current state through pure functions to create an entirely new object/application states.
 
-Reducers, actions, subscribe and dispatch are the core, and you could conceivable just use that. But practically speaking its worth learning the conventions + utility functions to reduce boilerplate / increase expressiveness. From my experience these learnings were interchangable between Angular2 and React.
+Reducers, actions, subscribe and dispatch are the core, and you could conceivable just use that. But practically speaking its worth learning the conventions + utility functions to reduce boilerplate / increase expressiveness. There are connector libraries for Angular2 and React.
 
 **Deep dive:**
 
@@ -162,7 +162,7 @@ State of your app is _only_ changed by a category of pure functions called reduc
 1. They _never mutate_, returning newly built objects: This allows reasoning about input + output _without side-effects_
 2. Their signature is _always_ `function name(state, action) {}`, so it makes it easy to compose them:
 
-Assume the state looks like this:
+Assume the state looks like this and we are using `react-redux`:
         
         var theState = {
           _2ndLevel: {
