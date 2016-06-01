@@ -48,6 +48,7 @@ An idiomatic Javascript view-layer library with an emphasis on functional progra
 **Resources:**
 
 - [Airbnb style guide](https://github.com/airbnb/javascript/tree/master/react)
+- [Advantages of using inline CSS](https://speakerdeck.com/vjeux/react-css-in-js)
 
 ## Webpack
 
