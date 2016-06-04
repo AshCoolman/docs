@@ -37,6 +37,10 @@
 * Add files interactively:
 
  `git add -i`
+ 
+* Forgot to add changes to that last commit? Stage the changes and then:
+
+ `git commit --amend -C HEAD`
 
 
 ## Resources
