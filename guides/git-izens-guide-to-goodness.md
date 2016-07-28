@@ -42,6 +42,9 @@
 
  `git commit --amend -C HEAD`
 
+* Search all commits messages:
+
+`git log --grep="valid" --all --author=Ashley --pretty=oneline`
 
 ## Resources
 
