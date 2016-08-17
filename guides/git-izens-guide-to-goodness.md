@@ -46,6 +46,14 @@
 
 `git log --grep="valid" --all --author=Ashley --pretty=oneline`
 
+* Log commits that touched a line
+
+`git log -L185,10:./<file>`
+
+* Log last change to line
+
+`git blame -L185,+5 -- ./<file>`
+
 ## Resources
 
 * [Git guide](http://rogerdudler.github.io/git-guide/)
