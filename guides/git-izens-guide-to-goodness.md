@@ -1,5 +1,12 @@
+## Learn git
+
+* Tutorial: http://learngitbranching.js.org/
+* Cheat sheet: http://ndpsoftware.com/git-cheatsheet.html#loc=workspace;
+* BONUS: https://www.youtube.com/watch?v=idLyobOhtO4
+
 ## Guidelines
 
+* Branch early, branch often
 * Keep remote clean:
 
   * Only put something on the remote if you want others to see it
