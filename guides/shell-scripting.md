@@ -1,8 +1,8 @@
 ---
 layout: page
 type: guide
-title: Gitizenʼs guide to goodness
-permalink: /guides/git-izens-guide-to-goodness/
+title: Shell scripting
+permalink: /guides/shell-scripting/
 ---
 ## Shell scripting
 
