@@ -1,6 +1,5 @@
 # Site settings
-title: Ash Coolman's docs
-email: writetofish at gmail
+title: Coolmanʼs docs
 description: > # this means to ignore newlines until "baseurl:"
   My documentation on web technologies
 highlighter: kramdown
