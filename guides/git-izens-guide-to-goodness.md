@@ -61,6 +61,15 @@
 
 `git blame -L185,+5 -- ./<file>`
 
+* Remove sensitive info from git history:
+
+```
+git filter-branch --index-filter \
+'git update-index --remove passwords.txt' <introduction-revision-sha1>..HEAD
+git push --force --verbose --dry-run
+git push --force
+```
+
 ## Resources
 
 * [Git guide](http://rogerdudler.github.io/git-guide/)
