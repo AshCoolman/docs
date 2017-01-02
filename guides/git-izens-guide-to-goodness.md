@@ -47,7 +47,37 @@ permalink: /guides/git-izens-guide-to-goodness/
 
  `git log --follow filename`
 
+* Add files interactively:
+
+ `git add -i`
+ 
+* Forgot to add changes to that last commit? Stage the changes and then:
+
+ `git commit --amend -C HEAD`
+
+* Search all commits messages:
+
+`git log --grep="valid" --all --author=Ashley --pretty=oneline`
+
+* Log commits that touched a line
+
+`git log -L185,10:./<file>`
+
+* Log last change to line
+
+`git blame -L185,+5 -- ./<file>`
+
+* Remove sensitive info from git history:
+
+```
+git filter-branch --index-filter \
+'git update-index --remove passwords.txt' <introduction-revision-sha1>..HEAD
+git push --force --verbose --dry-run
+git push --force
+```
+
 ## Resources
 
+* [Git guide](http://rogerdudler.github.io/git-guide/)
 * [Git FAQ](https://git.wiki.kernel.org/index.php/Git_FAQ#Why_the_.27Git.27_name.3F): this is _actually_ good
 * [Stackoverflow: Difference between HEAD / Working Tree / Index in Git](http://stackoverflow.com/questions/3689838/difference-between-head-working-tree-index-in-git)

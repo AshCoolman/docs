@@ -9,18 +9,13 @@ permalink: /guides/angular-styleguide/
 
 ### Minimise API
 
-Angular (esp. 1) has a large enough API and [DSL](https://www.google.co.uk/#q=Domain+specific+language+DSL+pattern+angular) already. Infact it has been suggested the reason Angular _google trends_ higher than React, is because Angular devs need to constantly google the docs. There is enough magic, resist adding anything except plain idiomatic JavaScript.
-
-### ES6 modules
-
-Angular 1: provides it's own module system (pre-ES6 module spec) - avoid it and use ES6 module system
-Angular 2: Expects you to just use the ES6 spec
-
-e.g. Bad `angular.module('angular-only-module-system')`, Good `import * as myPackage from 'my-package'`
-
-
+Angular has enough API and [DSL](https://www.google.co.uk/#q=Domain+specific+language+DSL+pattern+angular) already. You should **resist adding anything except plain idiomatic JavaScript**. It has been suggested the reason Angular _google trends_ higher than React, is because Angular devs need to constantly google the docs.
 
 ## Guidance
+
+### Which version of Angular?
+
+Angular 2 should be used for all green field projects.
 
 ### Lanuages
 
@@ -33,9 +28,9 @@ e.g. Bad `angular.module('angular-only-module-system')`, Good `import * as myPac
 
 ### General design
 
-1. Minor components (most in number): Dumb and stateless (except through property & events) - think regular Web components like `<input>`, `<video>`
+1. **Minor components (most in number)**: Dumb and stateless (except through property & events) - think regular Web components like `<input>`, `<video>`
 
-2. Major (least in number): Co-ordinate intra-component comms, provides state (reflected in Minor components), reacts to events and sets store
+2. **Major (least in number)**: Co-ordinate intra-component comms, provides state (reflected in Minor components), reacts to events and sets store
 
 ### Angular 1
 
@@ -89,9 +84,9 @@ class {
 
 [More info](http://toddmotto.com/exploring-the-angular-1-5-component-method/)
 
-## Naming conventions
+## Style guide
 
-John papa style guide is a good place to start
+[John papa style guide](https://github.com/johnpapa/angular-styleguide) is a good place to start
 
 ## Folder structure
 

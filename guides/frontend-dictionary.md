@@ -11,6 +11,30 @@ _Updated: 2 Dec '15_
 
 Practical info for a developer about to crack open a new frontend technology
 
+## Similar work
+
+* [State of the art javascript in 2016](https://medium.com/javascript-and-opinions/state-of-the-art-javascript-in-2016-ab67fc68eb0b)
+* [Simplified JavaScript Jargon](https://github.com/HugoGiraudel/SJSJ)
+* [frontendhandbook.com](http://www.frontendhandbook.com/)
+
+## Bash
+
+**One liner:**
+
+Unix shell & command language that ships with OSX
+
+**Should you use it:**
+
+Probably;
+
+It is handy. But its hard to understand if you don't understand the commands and flags being used.
+
+Generally. if there is already a nice package (npm, homebrew), switch to that.
+
+**Resources:**
+
+* [Bash script mode](http://redsymbol.net/articles/unofficial-bash-strict-mode/)
+
 ## Bower
 
 **One liner:**
@@ -32,6 +56,7 @@ An idiomatic Javascript view-layer library with an emphasis on functional progra
 **Resources:**
 
 - [Airbnb style guide](https://github.com/airbnb/javascript/tree/master/react)
+- [Advantages of using inline CSS](https://speakerdeck.com/vjeux/react-css-in-js)
 
 ## Webpack
 
@@ -117,6 +142,10 @@ Unsure: the tooling is shakey, and it is a large commitment.
 
 Some contributions first made to the [Simplified JavaScript Jargon](https://github.com/HugoGiraudel/SJSJ)
 
+**Resources:**
+
+* [Typescript deep dive gitbook](https://basarat.gitbooks.io/typescript/content/index.html
+
 ## Redux
 
 **One liner:** _Updated: 22 Dec '15_
@@ -129,7 +158,7 @@ Client-side state managemer: not as powerful as Flux, but much easier
 
 Redux is a small library that represents state as (immunatable) objects. And _new states_ by passing the current state through pure functions to create an entirely new object/application states.
 
-Reducers, actions, subscribe and dispatch are the core, and you could conceivable just use that. But practically speaking its worth learning the conventions + utility functions to reduce boilerplate / increase expressiveness. From my experience these learnings were interchangable between Angular2 and React.
+Reducers, actions, subscribe and dispatch are the core, and you could conceivable just use that. But practically speaking its worth learning the conventions + utility functions to reduce boilerplate / increase expressiveness. There are connector libraries for Angular2 and React.
 
 **Deep dive:**
 
@@ -142,8 +171,8 @@ State of your app is _only_ changed by a category of pure functions called reduc
 1. They _never mutate_, returning newly built objects: This allows reasoning about input + output _without side-effects_
 2. Their signature is _always_ `function name(state, action) {}`, so it makes it easy to compose them:
 
-Assume the state looks like this:
-
+Assume the state looks like this and we are using `react-redux`:
+        
         var theState = {
           _2ndLevel: {
             count: 0
@@ -195,6 +224,42 @@ I've not seen a better solution for Angularjs, and Angular2. For React I've only
 **Resources**:
 
 * [SO : Why use redux over facebook flux](http://stackoverflow.com/questions/32461229/why-use-redux-over-facebook-flux)
+* [Handcrafting an isomorphic redux application with love](https://medium.com/front-end-developers/handcrafting-an-isomorphic-redux-application-with-love-40ada4468af4)
+
+## Elm 
+
+_Updated 11th Mar 2016_
+
+**One liner:**
+
+Functional language designed for the web
+
+
+
+**In a nutshell**
+
+- _pure functional-language_:
+        Because it is [_pure_](https://www.google.co.uk/search?q=pure+function), it means the only "[side-effect](http://eloquentjavascript.net/03_functions.html#h_EdyBGBF6y/)" is that pure flows, like `(Action) -> Model -> Update -> View`, are much neater than can be achieved with Javascript.
+- _statically-typed_:
+        The static type checker is something like Typescript's but because is more specialised/simple (only functional), it use is much less of a cognitive burden.
+- _terse syntax_:
+        The syntax at first seems odd when you are looking through the Javascript lens. But once you start using it, you will find many syntactic convieniances and freebies that make it a joy to use. It is kind of like a non-mathsy version of Haskell.
+- _Reactive_:
+        It uses [signals](https://github.com/yang-wei/elmflux) (like [js observables](https://gist.github.com/staltz/868e7e9bc2a7b8c1f754)) which just means changes or recorded on a timeline (array). Which is convienice in functional programming, as that array can be transformed in various ways e.g. Did the user double click? = Are there two click events within 200ms of each other _within the Signal_.
+- _compiles to javascript_:
+        You can setup workflows with gulp/webpack etc to write part or all of your applications in Elm
+
+**Should you use it:**
+
+You should _learn_ it, as as of the now (April '16) it is where javascript is heading.
+
+I've not used it in production, but see here for a [case study](http://tech.noredink.com/post/126978281075/walkthrough-introducing-elm-to-a-js-web-app) where 3% of business logic is elm.
+
+**Resources:**
+
+* [http://elm-lang.org/](http://elm-lang.org/)
+* [Architecture tutorial](https://github.com/evancz/elm-architecture-tutorial)
+* [Community curated list](https://github.com/isRuslan/awesome-elm)
 
 ## Indexed db
 
