@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Cold coffee"
-description:  "I love Coffeescript, but I've found myself no longer using it. Unlike much of the internet dicussion around Coffeescript, I'm not really too fussed either way. But I do have opinions, and a personal experience, so here is my (parting?) thoughts on the language."
+title:  "Cold CoffeeScript"
+description:  "Why I no longer use Coffeescript, even if I love it"
 date:   2016-06-15 16:40:12
 categories: coffeescript
 ---
