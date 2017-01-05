@@ -50,6 +50,46 @@ An idiomatic Javascript view-layer library with an emphasis on functional progra
 - [Airbnb style guide](https://github.com/airbnb/javascript/tree/master/react)
 - [Advantages of using inline CSS](https://speakerdeck.com/vjeux/react-css-in-js)
 
+## React Native
+
+_Updated: 5 Jan '17_
+
+**One liner:**
+
+A platform that allows native apps to be composed (and controlled) by Javascript.
+
+- [ericvicenti/navigation/Docs/NavigationOverview.md](https://github.com/ericvicenti/navigation-rfc/blob/master/Docs/NavigationOverview.md)
+
+## React navigation options
+
+_Updated: 5 Jan '17_
+
+There is many projects, some only for React, some for ReactNative and some for any.
+
+### Navigator (ReactNative only)
+
+**One liner:**
+
+Old, original imperative navigation library - easy-to-use but rigid
+
+### Navigator experimental (Any)
+
+**One liner:**
+
+New set of components built by ReactNative team with js primitives, that is harder to use than Navigator (no routing), but supports single-directional data flow in prop-driven "navigation views"
+
+### react-router-native (ReactNative only)
+
+**One liner:**
+
+Built upon _Navigator experimental_ and mimics _react-router_ for the web
+
+### react-native-navigation (ReactNative only) [link](https://github.com/wix/react-native-navigation)
+
+**One liner:**
+
+Built on native primitives, rather than js-primitives
+
 ## Webpack
 
 _Updated: 27th Nov 2015_
