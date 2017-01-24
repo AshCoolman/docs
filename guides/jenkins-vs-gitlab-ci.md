@@ -1,3 +1,10 @@
+---
+layout: page
+type: guide
+title: Jenkins vs Gitlab-ci
+permalink: /guides/jenkins-vs-gitlab-ci/
+---
+
 # Jenkins vs Gitlab-ci
 
 ## Intro

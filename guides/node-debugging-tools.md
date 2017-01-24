@@ -1,3 +1,10 @@
+---
+layout: page
+type: guide
+title: Node debugging tools
+permalink: /guides/node-debugging-tools/
+---
+
 # Node debugging tools
 
 ## Notes
