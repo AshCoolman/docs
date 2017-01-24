@@ -8,7 +8,8 @@ Researching what a engineering team looks like with Jenkins, or with Gitlab-ci (
 ## Notes
 
 > The jenkins-can-do list for me is:
-1. ~~Jenkins offers me timed builds, which has many use cases, which Gitlab's CI feature set currently can not cover. But Gitlab does have manual/optional steps.~~
+
+>1. ~~Jenkins offers me timed builds, which has many use cases, which Gitlab's CI feature set currently can not cover. But Gitlab does have manual/optional steps.~~
 2. ~~Jenkins offers me an ability to check stuff out of subversion, and other non-git sources. Projects for teams that I have not managed to convince to move to Git still need Jenkins for CI.~~
 3. For organizations that want to create devops, and CI infrastructure elements, jenkins masters and runners are extremely easy to deploy even for dev-ops purposes where no git repository trigger is available...
 _Trivial to setup a CRON_
@@ -17,7 +18,8 @@ _Trivial to setup a CRON_
 _Is YML achores to DRY-up config, but no real way to add logic. Good/Bad?_
 
 > Where Gitlab-CI is objectively better and should REPLACE Jenkins-CI without delay in every company currently using Jenkins, regardless of which builds Ruby faster is:
-1. You want a per-branch and per-fork build without any configuration, with no hassle, no fuss, it just works!...
+
+>1. You want a per-branch and per-fork build without any configuration, with no hassle, no fuss, it just works!...
 2. You want a nice build instruction set to be in a standard place in your project (.gitlab-ci.yml) and that defines your build instructions, and these are versioned together with your code inside git, instead of separately...
 _Jenkinsfile is just the same_
 3. Jenkins can't mark the per-fork Merge Requests you have automatically as red or green...
@@ -27,7 +29,8 @@ _Jenkinsfile is just the same_
 
 
 > I'm being forced to use jenkins 2 at present, and I've got a few points which I thought might be useful - my opinions only.
-1. Jenkins 2 has Jenkinsfile support (similar to .gitlab-ci.yml), pipelines and a plugin that supports following github/bitbucket/gitlab? projects and auto-managing jobs for jenkinsfiles discovered. Which mostly negates several of the points re using gitlab over jenkins. I mention this, because otherwise I imagine someone else will...
+
+>1. Jenkins 2 has Jenkinsfile support (similar to .gitlab-ci.yml), pipelines and a plugin that supports following github/bitbucket/gitlab? projects and auto-managing jobs for jenkinsfiles discovered. Which mostly negates several of the points re using gitlab over jenkins. I mention this, because otherwise I imagine someone else will...
 2. Stating that you can (in jenkins) use per job parameters outside of code is, imo, a bad thing and completely defeats the point of having build steps defined in code. gitlab wins because it forces you to follow proper gitflow. ...environment variables) in the relevant stage.
 3. jenkins has docker plugins, but most of them are shit, because they force workspace/uid/gid into the container...
 4. ~~on the flipside, Jenkins has ec2 plugin support for automatically spinning up temp slaves, gitlab does not, so there's more work required to set up an auto scaling group which would auto register.~~
