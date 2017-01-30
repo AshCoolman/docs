@@ -1,3 +1,10 @@
+---
+layout: page
+type: guide
+title: Notes on Google SREs
+permalink: /guides/notes-google-sre/
+---
+
 Notes from this document: https://landing.google.com/sre/book/chapters/introduction.html
 
 
