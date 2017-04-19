@@ -76,6 +76,12 @@ git push --force --verbose --dry-run
 git push --force
 ```
 
+## Setup
+
+Don't use pager for git log [link](http://stackoverflow.com/a/17078021/225813)
+
+`git config --global core.pager cat`
+
 ## Resources
 
 * [Git guide](http://rogerdudler.github.io/git-guide/)
