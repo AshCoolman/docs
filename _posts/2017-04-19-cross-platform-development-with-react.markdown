@@ -54,9 +54,9 @@ Projects like [react-native-web](https://github.com/necolas/react-native-web) re
 * no clear development path to take web design to native
 * not compatible with react-native ui frameworks
 
-Anything outside the the 1:1 mapping of elements would need to be over-riden with specific markup. In this case, this is outside of the library's design goals and potentially breaks the semantic mapping between platforms.
+In the cases where these limitations are acceptable, there is nothing more elegant. But anytime we need more than 1:1 mapping provided by react-native-web, including the styling, we would need to add code in our view-logic to create specific markup. 
 
-In the cases where these limitations are acceptable, there is nothing more elegant. But if not, we ened another solution:
+I think this could might be viable if we spent time designing for react-native (which we are not). But even then, I suspect the [limited palette offered by _react-native-for-web_](https://necolas.github.io/react-native-web/storybook/?selectedKind=APIs&selectedStory=Clipboard&full=0&down=1&left=1&panelRight=0&downPanel=kadirahq%2Fstorybook-addon-actions%2Factions-panel) would not fit all our needs.
 
 ###### Option B: platform switching expressions in render logic
 
@@ -67,7 +67,7 @@ Using expressions to render different markup per platform is possible. But I thi
 
 React components are functions with state, that build virtualDOM (domain), which maps to elements (platform). We can use functions to create React components _parametised_ with platform elements. Thus we essentially need a [function to create a function](https://www.ibm.com/developerworks/library/j-ft10/) (depending on your programming-heritage, you may want to rename `LoginPartial` to `LoginFactory` in the example below).
 
-```
+```jsx
 import api from 'api';
 
 function LoginPartial({Wrapper, Header, Button}) 
@@ -94,7 +94,7 @@ function LoginPartial({Wrapper, Header, Button})
 
 Web:
 
-```
+```jsx
 const Login = LoginPartial({
   Wrapper: p=><div {...p} />,
   Header:p=><h1 {...p} />,
@@ -106,7 +106,7 @@ ReactDOM.render(<Login />);
 
 Native:
 
-```
+```jsx
 import { View, Text, TouchableOpacity as Touch} from 'react-native';
 
 const Login = LoginPartial(
