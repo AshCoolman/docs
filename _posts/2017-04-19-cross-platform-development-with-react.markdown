@@ -109,11 +109,11 @@ Native:
 ```js
 import { View, Text, TouchableOpacity as Touch} from 'react-native';
 
-const Login = LoginPartial(
+const Login = LoginPartial({
   Wrapper: View,
   Header: Text,
   Button: p=> <Touch onPress={p.onClick}><Text {...p} /></Touch>
-);
+});
 AppRegistry.register(<Login />);
 ```
 
