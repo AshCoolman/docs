@@ -67,7 +67,7 @@ Using expressions to render different markup per platform is possible. But I thi
 
 React components are functions with state, that build virtualDOM (domain), which maps to elements (platform). We can use functions to create React components _parametised_ with platform elements. Thus we essentially need a [function to create a function](https://www.ibm.com/developerworks/library/j-ft10/) (depending on your programming-heritage, you may want to rename `LoginPartial` to `LoginFactory` in the example below).
 
-```jsx
+```js
 import api from 'api';
 
 function LoginPartial({Wrapper, Header, Button}) 
@@ -94,7 +94,7 @@ function LoginPartial({Wrapper, Header, Button})
 
 Web:
 
-```jsx
+```js
 const Login = LoginPartial({
   Wrapper: p=><div {...p} />,
   Header:p=><h1 {...p} />,
@@ -106,7 +106,7 @@ ReactDOM.render(<Login />);
 
 Native:
 
-```jsx
+```js
 import { View, Text, TouchableOpacity as Touch} from 'react-native';
 
 const Login = LoginPartial(
