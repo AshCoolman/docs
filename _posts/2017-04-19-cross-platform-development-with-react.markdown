@@ -56,7 +56,7 @@ Projects like [react-native-web](https://github.com/necolas/react-native-web) re
 
 In the cases where these limitations are acceptable, there is nothing more elegant. But anytime we need more than 1:1 mapping provided by react-native-web, including the styling, we would need to add code in our view-logic to create specific markup. 
 
-I think this could might be viable if we spent time designing for react-native. But perhaps the "limited palatte" offered by _react-native-for-web_ would be 
+I think this could might be viable if we spent time designing for react-native (which we are not). But even then, I suspect the [limited palette offered by _react-native-for-web_](https://necolas.github.io/react-native-web/storybook/?selectedKind=APIs&selectedStory=Clipboard&full=0&down=1&left=1&panelRight=0&downPanel=kadirahq%2Fstorybook-addon-actions%2Factions-panel) would not fit all our needs.
 
 ###### Option B: platform switching expressions in render logic
 
