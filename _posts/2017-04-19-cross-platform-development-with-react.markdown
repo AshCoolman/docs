@@ -8,17 +8,17 @@ categories: react, react-native, ios, android
 
 #### Intro
 
-Every line of code that pushes a product forward is also liability and must be tested and maintained. Using ReactNative to reuse code is a seductive proposition. Some large established teams have reported code reuse of 70-90% between web and mobile apps. I've been looking at the realities of using ReactNative for my company which has only 4 frontend developers.
+Every line of code that pushes a product forward is also liability and must be tested and maintained. Using [React Native](https://facebook.github.io/react-native/) to reuse code for different platforms is a seductive proposition, infact some large established teams have reported code reuse of 70%-90% . I've been looking at the realities of using React Native for my company, which has four frontend developers.
 
 #### Background
 
-My engineering team's priority is to build our web offering fast. But if we can get an iOS/android app relatively cheap using React Native we would consider it. Currently we have:
+My engineering team's priority is to build our web offering fast. But if we can get an iOS/Android app relatively cheap- we would seriously consider it. Currently our web app is under development:
 
-* 2 months of coding on our web app (~12k LOC)
-* 4 frontend devs
+* 2 months of coding (~12k LOC)
 * ~80% test coverage
+* limited mobile designs
 
-The react web project currently:
+The web app uses the following technologies:
 
 * react-router
 * redux
@@ -27,11 +27,11 @@ The react web project currently:
 
 #### Cross platform development in React
 
-Theoretically we can share all domain code between all platforms. A button that triggers a Login process is semantically the same on Web and on iOS. But how that button is rendered, and the APIs available are platform-specific.
+Theoretically we can share all domain code between all platforms. A button that triggers a login process is semantically the same on Web and on iOS. But how that button is rendered, and the APIs available are platform-specific.
 
-React components build a "virtual-DOM", which is then mapped to platform elements. [Web](https://www.npmjs.com/package/react-dom) and *[native](http://facebook.github.io/react-native) are the obvious targets, but proof of the virtualDOM decoupling can be seen in other mappings e.g. [terminal](https://github.com/Yomguithereal/react-blessed), [VR](https://facebook.github.io/react-vr/), and [3d](https://github.com/Izzimach/react-three). 
+React components build a "virtual-DOM", which is then mapped to platform elements. [Web](https://www.npmjs.com/package/react-dom) and *[native](http://facebook.github.io/react-native) are the obvious platform targets, but proof of the virtual-DOM decoupling can be seen in other mappings e.g. [terminal](https://github.com/Yomguithereal/react-blessed), [VR](https://facebook.github.io/react-vr/), and [3d](https://github.com/Izzimach/react-three). 
 
-Conceptually, there must be logic to map platform to element:
+So we have established the following _conceptual logic_ must appear in cross platform code:
 
 ```
 if platform === 'web' then
@@ -41,33 +41,31 @@ else if platform === 'native-app' then
 endif
 ```
 
-But where is the best place to put this?
+But practically speaking, where is the best place to put this?
 
-<sup> * react-native actually registers the components with the native system that bundles and runs app. [Expo](https://expo.io/) further helps the ios vs android mapping.</sup>
+<sup> * react-native registers the components with the native system, which actually bundles and runs the app. [Expo](https://expo.io/) takes care of the iOS vs Android mapping.</sup>
 
-##### Option A: map 1 native to 1 web
+###### Option A: map 1 native to 1 web
 
-Projects like [react-native-web](https://github.com/necolas/react-native-web) rebuild the [react-native elements & API](https://github.com/necolas/react-native-web/blob/master/src/index.js) for the web. React-native-web itself is particularily powerful and mature, and really lets you write for native and get for web almost for free. But it has some limitations which must be considered carefully:
+Projects like [react-native-web](https://github.com/necolas/react-native-web) rebuild the [react-native elements & API](https://github.com/necolas/react-native-web/blob/master/src/index.js) for the web. _React-native-web_ itself is particularily powerful and mature, and really lets you write for native, and get web almost for free. But it has some limitations which must be considered carefully:
 
-* Limited semantic elements (e.g. no checkbox)
-* Limited styling (e.g. no fixed positioning)
+* limited semantic elements (e.g. no checkbox)
+* limited styling (e.g. no fixed positioning)
 * no clear development path to take web design to native
 * not compatible with react-native ui frameworks
 
-Anything outside the the 1:1 mapping of elements would need to be overriden with specific markup. In this case, this is outside of the library design and potentially breaks the semantic mapping between platforms.
+Anything outside the the 1:1 mapping of elements would need to be over-riden with specific markup. In this case, this is outside of the library's design goals and potentially breaks the semantic mapping between platforms.
 
-In the cases where these limitations are acceptable, there is nothing more elegant.
+In the cases where these limitations are acceptable, there is nothing more elegant. But if not, we ened another solution:
 
-##### Option B: platform switching expressions in render logic
+###### Option B: platform switching expressions in render logic
 
-Using expressions to render different markup per platform is possible. But I think it is quite obvious that arbitrary if/elses in the React component render function would quickly get messy. For this reason, I am discounting this option out of hand.
+Using expressions to render different markup per platform is possible. But I think it is quite obvious that arbitrary if/elses in a render function would quickly get messy. For this reason, I am discounting this option out of hand.
 
 
-##### Option C: Use domain components parametised by platform
+###### Option C: Use domain components parametised by platform
 
-React components are functions with state, that build virtual DOM (domain), which maps to elements (platform). We can use functions to create React components _parametised_ with platform elements. We essentially need a [function to create a function](https://www.ibm.com/developerworks/library/j-ft10/) (component):
-
-Note: Depending on your programming-heritage, you may want to rename `LoginPartial` to `LoginFactory`.
+React components are functions with state, that build virtualDOM (domain), which maps to elements (platform). We can use functions to create React components _parametised_ with platform elements. Thus we essentially need a [function to create a function](https://www.ibm.com/developerworks/library/j-ft10/) (depending on your programming-heritage, you may want to rename `LoginPartial` to `LoginFactory` in the example below).
 
 ```
 import api from 'api';
@@ -134,17 +132,17 @@ I converted two large React container components (and ~23 stateless components) 
 
 Some quantative estimations:
 
-* Of the time taken to produce a web feature, it takes a further +5-50% extra to build in react-native
-* In raw lines of javascript, adding a native components adds ~10-40% more code
+* Of the time taken to produce a web feature, it takes a further +5-50% time to convert to react-native
+* In raw lines of javascript, converting a web component to native adds ~10-40% more code
 
 Some qualitive benefits:
 
-* Singular dev per feature, means cost to understand requirements is paid only once
-* Lots of QA reuse, unsure exactly how much
+* single developer per feature, means the cost to understand requirements is paid only once
+* signifigant of QA reuse (unsure exactly how much)
 
 The big con:
 
-* React Native development can be slow due to recurring problems, whose solutions can take many hours find
+* React Native instability means development can be intially slow while workarounds & solutions are found
 
 #### Ongoing Questions
 
@@ -154,7 +152,7 @@ The big con:
 
 #### Technology notes
 
-##### Expo (& create-react-native-app)
+###### Expo (& create-react-native-app)
 
 A big time saver. IIRC the last time I setup a react-native project using a custom webpack config it took ~1.5 days until I was happy to develop on it. Expo setup took a few hours, was more stable, and much easier to extend with custom features.
 
