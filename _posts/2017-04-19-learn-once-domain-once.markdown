@@ -36,15 +36,13 @@ The react web project:
 The react-native project:
 
 
-##### Cross platform development
+#### Cross platform development in React
 
 Theoretically we can share all domain code between all platforms. A button that triggers a Login process is semantically the same on Web and on iOS. But how that button is rendered, and the APIs available are platform-specific.
 
 React components build a "virtual-DOM", which is then mapped to platform elements. [Web](https://www.npmjs.com/package/react-dom) and *[native](http://facebook.github.io/react-native) are the obvious targets, but virtualDOM is so decoupled that there are many other mappings e.g. [terminal](https://github.com/Yomguithereal/react-blessed), [VR](https://facebook.github.io/react-vr/), and [3d](https://github.com/Izzimach/react-three). 
 
 * react-native actually registers the components with the native system that bundles and runs app. Expo further helps the ios vs android mapping.
-
-##### Cross-platform concepts in React
 
 Conceptually, there must be logic to map platform to element:
 
@@ -56,8 +54,9 @@ else if platform === 'native-app' then
 endif
 ```
 
+But where is the best place to put this?
 
-##### Option A: 1:1 map native to web
+##### Option A: map 1 native to 1 web
 
 Projects like [react-native-web](https://github.com/necolas/react-native-web) rebuild the [react-native elements & API](https://github.com/necolas/react-native-web/blob/master/src/index.js) for the web. React-native-web itself is particularily a powerful mature, and really lets you you write for native and get for web almost for free. But it has some limitations which must be considered carefully:
 
@@ -70,12 +69,12 @@ Anything outside the the 1:1 mapping of elements would need to be overriden with
 
 In the cases where these limitations are acceptable, there is nothing more elegant.
 
-##### Option B: Platform switching expressions in domain code
+##### Option B: platform switching expressions in render logic
 
 Using expressions to render different markup per platform is possible. But I think it is quite obvious that arbitrary if/elses in the react render function would quickly get messy. For this reason, I am discounting out of hand.
 
 
-##### Option C: Domain functions, parametised by platform
+##### Option C: Use domain components parametised by platform
 
 React components are functions with state, that build virtual DOM (domain), which maps to elements (platform). We can use functions to create React components _parametised_ with platform elements. We essentially need a [function to create a function](https://www.ibm.com/developerworks/library/j-ft10/) (component):
 
@@ -132,7 +131,7 @@ AppRegistry.register(<Login />);
 
 Note: Depending on your heritage, you may want to rename `LoginPartial` to `LoginFactory`.
 
-Major beneifts of this approach:
+Why I like this approach best:
 
 * Component markup is left purely domain focused
 * Complete flexibility of what is rendered
@@ -141,9 +140,11 @@ Major beneifts of this approach:
     - Easy to split-test sub-components
     - Easy to incrementally upgrade sub-components
 
-#### Impressions
+#### Overall impressions so far
 
-I converted two large containers, with (~23 stateless components) each. I relied only on the technique described in option C. In order of importance
+I converted two large React container components from the web project (~23 stateless components). I relied only on the technique described in option C, and tried to do an close-approximation of the web design converted to native.
+
+Some quantative estimations:
 
 * Of the time taken to produce a web feature, it takes a further +5-50% extra to build in react-native
 * In raw lines of javascript, adding a native components adds ~10-40% more code
@@ -155,7 +156,7 @@ Some qualitive benefits:
 
 The big con:
 
-* React Native development has some recurring problems whose solutions needed many hours to uncover
+* React Native development can be slow due to recurring problems, whose solutions can take many hours find
 
 #### Ongoing Questions
 
