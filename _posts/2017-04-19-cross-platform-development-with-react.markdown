@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Learn/write domain once, present anywhere"
-description:  "My experiences with ReactNative have been very, VERY good"
+title:  "Cross-platfrom development with React"
+description:  "I've been doing some prototyping with ReactNative, taking an existing web codebase to native"
 date:   2017-04-17 13:36:22
 categories: react, react-native, ios, android
 ---
