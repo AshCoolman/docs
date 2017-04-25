@@ -41,16 +41,32 @@ permalink: /guides/git-izens-guide-to-goodness/
 
 * Find commits with `searchterm` in comment:
 
- `git log --grep="searchterm"`
+ `git log --grep="searchterm" [<filename>]`
 
-* Find all commits that modify a certain fail:
+* Find commits with `searchterm` in commits not directly available in history
 
- `git log --follow filename`
+
+`git log --walk-reflogs --grep-reflog=empty  [<filename>]`
+
+* Find all commits that modify a certain file: 
+
+ `git log --follow [<filename>]`
+
+
+* Find diffs in git history
+
+ `git log -p`
 
 * Add files interactively:
 
  `git add -i`
  
+ * Remove files interactively:
+
+`git rm --cached <filename>`
+
+`git rm --cached -r <directory>`
+
 * Forgot to add changes to that last commit? Stage the changes and then:
 
  `git commit --amend -C HEAD`
