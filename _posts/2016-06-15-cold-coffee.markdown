@@ -6,11 +6,11 @@ date:   2016-06-15 16:40:12
 categories: coffeescript
 ---
 
-#### Intro
+### Intro
 
 I do not have strong feelings on Coffeescript: I like Coffeescript, but I don't use it. Perhaps this means it is a thin topic for me to write about. But regardless, here is my probably parting, hopefully nonpolarising thoughts on the language I left behind.
 
-#### Goodbye Vanilla, hello Coffee
+#### Goodbye vanilla, hello coffee
 
 In 2014 I fell in love with CoffeeScript. So much so it was soon the lingua-franca of my internal coding monologue. Anytime I returned to Javascript I felt weighed down by the unnecessary parentheses and curly brackets. I'd never used Ruby or Python, and at the time, I wasn't particularly into pure functional programming, I just found CoffeeScript _really nice_.
 
@@ -20,7 +20,7 @@ But in late 2015, after writing ~10,000 lines of CoffeeScript, I started to feel
 
 In  2014, after using Coffeescript for 9-10 months I had sat down to build a little prototype in Coffeescript. I had decided to look into ES6 modules - but was quickly disappointed to find the [official CoffeeScript advice](https://github.com/jashkenas/coffeescript/wiki/FAQ#unsupported-features) was to _roll your own, #ES5style_. Coffeescript was actually _limiting_ me.
 
-#### Weak Coffee?
+#### Weak coffee?
 
 So why wouldn't the Coffeescript guys adopt the TC39/community _blessed_ module system?
 
@@ -44,7 +44,7 @@ And as for Coffeescript's IE6 support, this was never an important factor.
 
 Many of the advantages that Coffeescript had over the Javascript in 2014, no longer exist in a modern browser. And compared to other transpiled languages, Coffeescript is lagging behind. Not that the CoffeeScript maintainers seem to mind - after all they made an [extra considered](https://github.com/jashkenas/coffeescript/commit/6b4e437c93715a08b9f05b8423a953dda3a10a93), pleasant python-like language, and they want to keep it that way. Fair enough.
 
-#### Dirty Chai Latte with soy, please
+#### Dirty chai latte with soy, please
 
 Perhaps I'm a filthy hipster, but Coffeescript's rate of adoption for new language features is too slow for me. I want everything:
 
