@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Cross-platfrom development with React"
+title:  "Pig-headed cross-platfrom development with React"
 description:  "I've been doing some prototyping with ReactNative, taking an existing web codebase to native"
 date:   2017-04-17 13:36:22
 categories: react, react-native, ios, android
@@ -8,11 +8,13 @@ categories: react, react-native, ios, android
 
 #### Intro
 
-Every line of code is a liability, but not every line creates value. I have been experimenting with [React Native](https://facebook.github.io/react-native/) to reuse domain code written for the web. Some large established teams have reported code reuse of 70%-90%, plus a bunch of other benefits to their output. I've recreated two containers, and in the process of getting them QA'd. The short version is, it was way faster, but many problems had to be overcome, and I'm still closingin on the optimum methodologies to use for low effort reuse.
+Every line of code is a liability, but not every line creates value. 
+
+This line of reasoning, makes the code reuse opporutinities given by [React Native](https://facebook.github.io/react-native/) very interesting. I've been making a "protoype" ReactNative app, re-purposing code originally written for two reasonabley sized features. I'm currentyly in the QA stage, but its been quite easy and fast. I'm still closing in on optimimal methodologies to maximally leverage existing code and effort.
 
 #### Background
 
-My team's priority is to build quailty, fast. Only if we can get an iOS/Android app relatively cheap- we would seriously consider it. Currently our web app is under development:
+My team's priority is to build quailty, fast. Our current web app as it stands: 
 
 * 2 months of coding (~12k LOC)
 * ~80% test coverage
@@ -25,65 +27,60 @@ The web app uses the following technologies:
 * styled-components
 * react-bootstrap
 
-#### Cross platform development in React
 
-Theoretically all domain code can be shared beween all platforms. A button that triggers a login process is semantically the same on Web and on iOS. But how that button is rendered, and the APIs available when the button is pressed/clicked are platform-specific.
+### The prototype
 
-React components build a "virtual-DOM", which is then mapped to platform elements. [Web](https://www.npmjs.com/package/react-dom) and *[native](http://facebook.github.io/react-native) are the obvious platform targets, but proof of the virtual-DOM decoupling can be seen in other mappings e.g. [terminal](https://github.com/Yomguithereal/react-blessed), [VR](https://facebook.github.io/react-vr/), and [3d](https://github.com/Izzimach/react-three). 
+#### Rational
 
-So we have established the following _conceptual logic_ must appear in cross platform code:
+I converted two features to the app, using mobile designs were they existing and elborating were they didnt. QA is being undergone as a formal process, but we are not being "production-strict". The emphasis has been on getting a effort-efficient NativeApp that creates value for our customers - rather than pushing for a magical experience.
 
-```
-if platform === 'web' then
-  render('<button onClick="doLogin">Login</button>')
-else if platform === 'native-app' then
+#### Output
+
+Both features use a set of shared "[atomic](http://bradfrost.com/blog/post/atomic-web-design/#atoms)" components (Buttons, Headings, Icons, ErrorText etc).
+
+
+The first feature is a list view that took ~2 weeks to build for web. It is populated from an API, and has infinite scrolling. The signifigant components were the container and a stateless list item component. The Native version's design was pushed _very close_ the designs for mobile web, with very little elboration.
+
+
+The second feature was a detail view that took~4-5 weeks to build for web. It has 2 containers, talks to two endpoints, and comprises ~10 signifigant stateless molecules with behavior including a "read more" button that only appears if text is long enough, markdown rendering, position fixed boxes and many custom atomic components. The design is not as polished, but has been greatly modified to harmonise with iOS.
+
+
+#### Cross-platform React
+
+Theoretically _all_ domain code can be shared beween all platforms. That is to say, all platforms have the concept of the "Login button", and a "button pressed" event. But different platforms render the button and hook into its events differently. 
+
+React components build a "virtual-DOM", which is then mapped to platform elements for rendering. [Web](https://www.npmjs.com/package/react-dom) and *[native](http://facebook.github.io/react-native) are the obvious platform targets. But it is also illustrative to know Component's logical _View_ can also be linked to completely different rendering pipelines e.g. [terminal](https://github.com/Yomguithereal/react-blessed), [VR](https://facebook.github.io/react-vr/), and [3d](https://github.com/Izzimach/react-three). 
+
+All cross-platform code must contain the following _conceptual logic_ somewhere:
+
+```sh
+IF platform is 'web' THEN
+  render('<button onClick="doLogin">Login</button>');
+ELSEIF platform === 'native-app' THEN
   render('<TouchableHighlight />');
-endif
+ENDIF
 ```
 
-But practically speaking, where is the best place to put this?
+But where is the best place for this?
 
 <sup> * react-native registers the components with the native system, which actually bundles and runs the app. [Expo](https://expo.io/) takes care of the iOS vs Android mapping.</sup>
 
-###### Option A: map 1 native to 1 web
+###### Option A: Map 1 x Native : 1 x Web
 
+Mapping one React Native element to one browser element can be achieved in many ways - a has object, a Higher order component or a library. A library that does this particularily well is [react-native-web](https://github.com/necolas/react-native-web). It has rebuild the [react-native elements & API](https://github.com/necolas/react-native-web/blob/master/src/index.js) for the web, allowing React Native apps to produce web apps almost for free. Its a powerful and mature library, with web wrappers for many of ReactNatives - including ReactNative style objects. 
 
-Projects like [react-native-web](https://github.com/necolas/react-native-web) rebuild the [react-native elements & API](https://github.com/necolas/react-native-web/blob/master/src/index.js) for the web. 
-
-
-######
-
- _React-native-web_ itself is particularily powerful and mature, and really lets you write for native, and get web almost for free. *Including translating ReactNative styles/Apis into web styles/Apis!
-
-
-In the cases where its limitations are acceptable, there is nothing more elegant. As I see it, these are the libraries limitates (which are by design)
+There are big limitations though:
 
 * limited semantic elements (e.g. no checkbox)
 * limited styling (e.g. no fixed positioning)
 * no clear development path to take web design to native
 * not compatible with react-native ui frameworks
 
-The project basically [self identifies as](https://github.com/KodersLab/react-native-for-web#why-use-react-native-for-web) a solution when you just need something working, on a budget and are happy with the [limited palette](https://necolas.github.io/react-native-web/storybook/?selectedKind=APIs&selectedStory=Clipboard&full=0&down=1&left=1&panelRight=0&downPanel=kadirahq%2Fstorybook-addon-actions%2Factions-panel).
-
-I think these limitations also extend to any sort of technique that maps elements across platforms 1:1 - including decorators, HOC, etc
+The project [self describes its use case](https://github.com/KodersLab/react-native-for-web#why-use-react-native-for-web) as cheap cross-platform with a [limited palette](https://necolas.github.io/react-native-web/storybook/?selectedKind=APIs&selectedStory=Clipboard&full=0&down=1&left=1&panelRight=0&downPanel=kadirahq%2Fstorybook-addon-actions%2Factions-panel).
 
 ###### Option B: platform switching expressions in render logic
 
-Using expressions to render different markup per platform is possible. But I think it is quite obvious that arbitrary if/elses in a render function would quickly get messy.
-
-```
-createElement(platform.web ? 'span' : 'Text', 'hello');
-
-const Zone = props =>
-  platform.web
-  ? <div onClick={props.onClick} {...props}/>
-  : <TouchableHighlight onPress={props.onClick}>
-      <View {...props}
-    </TouchableHighlight>
-
-```
-
-_Platform detecting expressions_ introduce controlflow all over your code base. But the platform never changes at run time, so logically this is pure cost without benefit. Or to put it another way - platform is not a variable, so lets not treat it as such.
+Using expressions to render different markup per platform is possible. But I think it is quite obvious that arbitrary if/elses in a render function would quickly get messy. The platform is not a run-time variable, so it should not be treated as such.
 
 ###### Option C: Use domain components parametised by platform
 
