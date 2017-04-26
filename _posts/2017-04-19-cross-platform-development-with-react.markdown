@@ -91,7 +91,7 @@ Lets start off with something analgous and work up to this:
 
 If I have a `Link` component and I want to "decouple" style from the component. One way is to use `react-css-modules`:
 
-```jsx
+```js
 import css from 'react-css-modules';
 import lightStyles from './light.css';
 import darkStyles from './dark.css';
@@ -117,7 +117,7 @@ We want to decouple the elements (and the style, and the props).
 
 Part 1: The platform agnostic domain code:
 
-```jsx
+```js
 function LinkFactory({ Wrapper, Hat, Sword, Speech, doSay }) {
 
   const NewLink = props => (
@@ -145,7 +145,7 @@ Part 2: Create the Link, with browser elements:
 
 NOTE: we have to abandon css-modules, because 
 
-```jsx
+```js
 // Link.web.js
 import css from 'react-css-modules';
 import lightStyles from './light.css';
@@ -171,7 +171,7 @@ Please note:
 
 Part 3: Create the Link, with React Native elements
 
-```jsx
+```js
 // Link.native.js
 import LinkFactory from './LinkFactory';
 import styled from 'styled-components/native';
@@ -203,7 +203,7 @@ Please note:
 Real world refinements assuming use of UI frameworks for [native](https://docs.nativebase.io/) and [web](http://www.material-ui.com/#/components/app-bar) and Api wrappers:
 
 
-```jsx
+```js
 // Link.native.js
 import LinkFactory from './LinkFactory';
 import { View as Wrapper, Button as SayButton } from '../native/components';
@@ -211,7 +211,7 @@ import { alert as doSay } from '../native/apis';
 export default LinkFactory({ Wrapper, Hat, SayButton, doSay });
 ```
 
-```jsx
+```js
 // Link.web.js
 import LinkFactory from './LinkFactory';
 import { View as Wrapper, Button as SayButton } from '../web/components';
@@ -281,7 +281,7 @@ function LoginFactory({Wrapper, Header, Button})  {
 
 Web implementation:
 
-```jsx
+```js
 import styled from 'styled-components';
 
 const Login = LoginFactory({
@@ -298,7 +298,7 @@ ReactDOM.render(<Login />);
 
 Native implementation:
 
-```jsx
+```js
 import { View, Text, TouchableOpacity as Touch} from 'react-native';
 
 const Login = LoginFactory({
