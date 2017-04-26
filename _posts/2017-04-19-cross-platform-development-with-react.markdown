@@ -6,46 +6,50 @@ date:   2017-04-17 13:36:22
 categories: react, react-native, ios, android
 ---
 
-#### Intro
+### Intro
 
 Every line of code is a liability, but not every line creates value. 
 
-This line of reasoning, makes the code reuse opporutinities given by [React Native](https://facebook.github.io/react-native/) very interesting. I've been making a "protoype" ReactNative app, re-purposing code originally written for two reasonabley sized features. I'm currentyly in the QA stage, but its been quite easy and fast. I'm still closing in on optimimal methodologies to maximally leverage existing code and effort.
+This line of reasoning, makes the code reuse opporutinities given by [React Native](https://facebook.github.io/react-native/) very interesting. I've working on a protoype that takes web app code, and maximally reuses code (and QA). Its been very promising, but I'm still closing in on optimimal methodologies.
 
-#### Background
+### The prototype
 
-My team's priority is to build quailty, fast. Our current web app as it stands: 
+#### Existing web app
 
-* 2 months of coding (~12k LOC)
-* ~80% test coverage
+State of current web app: 
+
+* 2 months of coding (~ 12k LOC)
+* ~ 80% test coverage
 * limited mobile designs
 
-The web app uses the following technologies:
+Tech used:
 
-* react-router
+* react-router-native
 * redux
 * styled-components
 * react-bootstrap
-
-
-### The prototype
 
 #### Rational
 
 I converted two features to the app, using mobile designs were they existing and elborating were they didnt. QA is being undergone as a formal process, but we are not being "production-strict". The emphasis has been on getting a effort-efficient NativeApp that creates value for our customers - rather than pushing for a magical experience.
 
-#### Output
+#### Web features ported to React Native
 
-Both features use a set of shared "[atomic](http://bradfrost.com/blog/post/atomic-web-design/#atoms)" components (Buttons, Headings, Icons, ErrorText etc).
+The first feature is a list view:
 
+* ~ 2 weeks dev time
+* Major components: 1 x container, 1 x stateless component
+* 1 API endpoints
+* infinite scrolling
 
-The first feature is a list view that took ~2 weeks to build for web. It is populated from an API, and has infinite scrolling. The signifigant components were the container and a stateless list item component. The Native version's design was pushed _very close_ the designs for mobile web, with very little elboration.
+The second feature is a detail view:
 
+* ~ 4 weeks dev time
+* Major components: 2 containers, ~10 x stateless
+* 2 x API
+* includes "read more" button that only appears if text is long enough, markdown rendering, and position fixed boxes
 
-The second feature was a detail view that took~4-5 weeks to build for web. It has 2 containers, talks to two endpoints, and comprises ~10 signifigant stateless molecules with behavior including a "read more" button that only appears if text is long enough, markdown rendering, position fixed boxes and many custom atomic components. The design is not as polished, but has been greatly modified to harmonise with iOS.
-
-
-#### Cross-platform React
+### Cross-platform React
 
 Theoretically _all_ domain code can be shared beween all platforms. That is to say, all platforms have the concept of the "Login button", and a "button pressed" event. But different platforms render the button and hook into its events differently. 
 
@@ -63,33 +67,22 @@ ENDIF
 
 But where is the best place for this?
 
-<sup> * react-native registers the components with the native system, which actually bundles and runs the app. [Expo](https://expo.io/) takes care of the iOS vs Android mapping.</sup>
-
 ###### Option A: Map 1 x Native : 1 x Web
 
-Mapping one React Native element to one browser element can be achieved in many ways - a has object, a Higher order component or a library. A library that does this particularily well is [react-native-web](https://github.com/necolas/react-native-web). It has rebuild the [react-native elements & API](https://github.com/necolas/react-native-web/blob/master/src/index.js) for the web, allowing React Native apps to produce web apps almost for free. Its a powerful and mature library, with web wrappers for many of ReactNatives - including ReactNative style objects. 
+Mapping one React Native element to one browser element can be achieved in many ways - a hash object, a Higher order component or a library. A particularly mature & powerful library is [react-native-web](https://github.com/necolas/react-native-web). provides [react-native elements & API](https://github.com/necolas/react-native-web/blob/master/src/index.js) for the web, allowing React Native apps to produce web apps, with almost no effort.
 
-There are big limitations though:
-
-* limited semantic elements (e.g. no checkbox)
-* limited styling (e.g. no fixed positioning)
-* no clear development path to take web design to native
-* not compatible with react-native ui frameworks
-
-The project [self describes its use case](https://github.com/KodersLab/react-native-for-web#why-use-react-native-for-web) as cheap cross-platform with a [limited palette](https://necolas.github.io/react-native-web/storybook/?selectedKind=APIs&selectedStory=Clipboard&full=0&down=1&left=1&panelRight=0&downPanel=kadirahq%2Fstorybook-addon-actions%2Factions-panel).
+Our prototype needed the reverse workflow - but regardless, there are serious limitations that can effect styling and semantics. The project [self describes its use case](https://github.com/KodersLab/react-native-for-web#why-use-react-native-for-web) as cheap cross-platform with a [limited palette](https://necolas.github.io/react-native-web/storybook/?selectedKind=APIs&selectedStory=Clipboard&full=0&down=1&left=1&panelRight=0&downPanel=kadirahq%2Fstorybook-addon-actions%2Factions-panel). 
 
 ###### Option B: platform switching expressions in render logic
 
-Using expressions to render different markup per platform is possible. But I think it is quite obvious that arbitrary if/elses in a render function would quickly get messy. The platform is not a run-time variable, so it should not be treated as such.
+Using expressions to render different markup per platform is possible. But messy. Plus, the platform is not a run-time variable, so it should not be treated as such.
 
 ###### Option C: Use domain components parametised by platform
 
-React components are functions with state, that build virtualDOM (domain), which maps to elements (platform). We can use functions to create React components _parametised_ with platform elements. Thus we essentially need a [function to create a function](https://www.ibm.com/developerworks/library/j-ft10/) (depending on your programming-heritage, you may want to rename `<component>Factory` with [`<component>Partial`](https://medium.com/functional-javascript/higher-order-functions-78084829fff4) in the example below)
+React components are functions that build virtualDOM (domain), which maps to elements (platform). We can use _another_ [function to create a React component](https://www.ibm.com/developerworks/library/j-ft10/) _parametised_ with platform elements. Depending on your programming-heritage, you may refer to this _creating function_       as a `<component>Factory` or a [`<component>Partial`](https://medium.com/functional-javascript/higher-order-functions-78084829fff4) in the example below:
 
 
-Lets start off with something analgous and work up to this:
-
-If I have a `Link` component and I want to "decouple" style from the component. One way is to use `react-css-modules`:
+First, lets look at how you can use idiomatic React to decouple style from a `Link` component using `react-css-modules`:
 
 ```js
 import css from 'react-css-modules';
@@ -111,11 +104,9 @@ export const DarkLink = css(Link, darkStyles);
 
 Note that `css(..., ..)` is a [Higher order component](https://facebook.github.io/react/docs/higher-order-components.html)
 
-Now back to the cross-platform problem:
+Now for this protoype, I wanted to decouple the platform-elements from the `Link`.
 
-We want to decouple the elements (and the style, and the props).
-
-Part 1: The platform agnostic domain code:
+####### Step 1: Platform agnostic component creation function:
 
 ```js
 function LinkFactory({ Wrapper, Hat, Sword, Speech, doSay }) {
@@ -134,16 +125,14 @@ function LinkFactory({ Wrapper, Hat, Sword, Speech, doSay }) {
 export default LinkFactory;
 ```
 
-So now we have a function, that returns new Link components when you call it. Please take care to note:
+So now we have a function, that returns new `Link` components when you call it. Please take care to note:
 
 * No platform elements are specified (e.g. div)
 * No platform apis are specified (e.g. window.alert)
 * No styling in component
 * Component names are entirely 
 
-Part 2: Create the Link, with browser elements:
-
-NOTE: we have to abandon css-modules, because 
+####### Step 2: Creating the Link, with browser elements:
 
 ```js
 // Link.web.js
@@ -152,13 +141,9 @@ import lightStyles from './light.css';
 import LinkFactory from './LinkFactory';
 
 export default LinkFactory({
-
   Wrapper: css( ()=><div/>, lightStyles ),
-
   Hat:  ()=><i icon="hat" />,
-
   SayButton: props=><button {...props} />
-
   doSay: window.alert
 })
 ```
@@ -166,10 +151,9 @@ export default LinkFactory({
 Please note:
 
 * `SayButton` props are spread onto the element, including children
-* `doSay` has the implementation passed in, but not the usage
 * WARNING: Each component with a _style attribute_ needs css() called on it (one in this example)
 
-Part 3: Create the Link, with React Native elements
+####### Step 3: Creating the `Link`, with React Native elements
 
 ```js
 // Link.native.js
@@ -178,17 +162,13 @@ import styled from 'styled-components/native';
 import { Text, TouchableOpacity as Touch, Alert } from 'react-native';
 
 export default LinkFactory({
-
   Wrapper: styled.View`
     background-color: green;
   `,
-
   Hat:  () => <Text>'▲'</Text>,
-
   SayButton: props => <Touch onPress={props.onClick}>
     <Text {...props} />
   </Touch>,
-
   doSay: Alert.alert // Uses dialogue heading
 })
 ```
@@ -219,25 +199,22 @@ import { alert as doSay } from '../web/apis';
 export default LinkFactory({ Wrapper, Hat, SayButton, doSay });
 ```
 
-**Discussion point** 
-
-`LinkFactory` is not by a strict intepretation a _Higher order component_ :
+####### Discussion: Are these Higher order components?
 
 > A higher-order component is a function that takes a component and returns a new component.
-
-It doesn't take a Component as an input, it takes a has of components - and uses them in another component. But regardless, it is a [higher order function](http://eloquentjavascript.net/05_higher_order.html#h_xxCc98lOBK)
+- React docs
 
 > Functions that operate on other functions, either by taking them as arguments or by returning them, are called higher-order functions.
+- [Eloquent javascript](higher order function](http://eloquentjavascript.net/05_higher_order.html#h_xxCc98lOBK)
 
 
-Do you want to know the developer experience on converting things large nested container/components? Well skip to here
 
-Ok, on with a slightly more realistic example - a login component:
+
 
 ```js
 import api from 'api';
 
-function LoginFactory({Wrapper, Header, Button})  {
+function LoginFactory({ Wrapper, Header, Button })  {
   class Login extends React.Component {
     constructor() {
       super();
@@ -311,16 +288,16 @@ AppRegistry.registerComponent(<Login />);
 
 ### What did I do exactly for the prototype
 
-I converted two large React container components (and ~23 stateless components) from the web project. I relied only on the technique described in option C, and tried to do an close-approximation of the web design converted to native. Both features used a subset of "[atomic](http://bradfrost.com/blog/post/atomic-web-design/#atoms)" components (Buttons, Headings, Icons, ErrorText etc).
+I converted two large React container components (and ~ 23 stateless components) from the web project. I relied only on the technique described in option C, and tried to do an close-approximation of the web design converted to native. Both features used a subset of "[atomic](http://bradfrost.com/blog/post/atomic-web-design/#atoms)" components (Buttons, Headings, Icons, ErrorText etc).
 
 The first feature used 1 container and 1 signifigant "[molecule](http://bradfrost.com/blog/post/atomic-web-design/#molecules)" and had an infinite-scroll behavior.
 
-The second feature was a huge pain to build for web, as it had 2 containers, but ~14 signifigant stateless components. All three of the frontend developers on my team had worked on this. Signifigant features included a "read more" button that would only appear if the text was long enough, markdown rendering, and a heap of custom atoms for lists etc. 
+The second feature was a huge pain to build for web, as it had 2 containers, but ~ 14 signifigant stateless components. All three of the frontend developers on my team had worked on this. Signifigant features included a "read more" button that would only appear if the text was long enough, markdown rendering, and a heap of custom atoms for lists etc. 
 
 ### What was it like doing this for real
 
 
-The first feature was very easy - including the _equivalent_ scrolling logic for Native (which took ~1.5hrs).
+The first feature was very easy - including the _equivalent_ scrolling logic for Native (which took ~ 1.5hrs).
 
 The second feature was a bit of a grind - just for the shear number of components. I would say it took approx 50% of its web build time??? And much, much, much easier - mainly down to requirements being clear.
 
@@ -375,7 +352,7 @@ Compared to React web developement:
 
 Incredible.
 
-IIRC the last time I setup a react-native project using a custom webpack config it took ~1.5 days until I was happy to develop on it. Expo setup took a few hours, was more stable, easier add features to. Probably the one of the coolest things, is I can send a QR code to my remote-QA and within seconds they can be looking at the app as it is on my computer.
+IIRC the last time I setup a react-native project using a custom webpack config it took ~ 1.5 days until I was happy to develop on it. Expo setup took a few hours, was more stable, easier add features to. Probably the one of the coolest things, is I can send a QR code to my remote-QA and within seconds they can be looking at the app as it is on my computer.
 
 ###### styled-components
 
