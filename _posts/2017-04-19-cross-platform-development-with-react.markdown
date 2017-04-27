@@ -106,6 +106,11 @@ A Component is a function, if we want to partially use a function (domain), but 
     );
     return Component;
   }
+  const CompWeb = factory({
+    Wrapper: div,
+    Label: span,
+    Button: button
+  });
 ```
 
 Depending on your programming-heritage/preference, you might refer the _factory_ as a [partial](https://medium.com/functional-javascript/higher-order-functions-78084829fff4) instead.
