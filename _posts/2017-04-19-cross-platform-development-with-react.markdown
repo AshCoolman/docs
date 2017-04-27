@@ -11,13 +11,13 @@ categories: react, react-native, ios, android
 
 # Intro
 
-Every line of code is a liability, but not every line creates value. This is particuarly interesting when it comes to building both native apps, with web apps. Theoretically _all_ domain code can be shared beween _all_ platforms. That is to say, all platforms have the concept of the "Login button", and a "button pressed" event. But different platforms render the button and handle its events differently. 
+Every line of code is a liability, but not every line creates value. This is particuarly interesting when it comes to building native & web apps that offer the same features. Theoretically _all_ domain code can be shared beween _all_ platforms. That is to say, all platforms have the concept of the "Login button", and a "button pressed" event. But different platforms render the button and handle its events differently. 
 
-Rebuilding React web apps in [React Native](https://facebook.github.io/react-native/) has great code/effort reuse potential. I've been building a protoype that does exactly that. After rebuilding two features, I've settled on a technique that allows for 1:1 component reuse, but can be relaxed for certain components.
+Rebuilding React web apps in [React Native](https://facebook.github.io/react-native/) has great code/effort reuse potential. I've been building a protoype that **takes code from an existing web app, and reuses it a native app to provide the same features**. After rebuilding two features, I've settled on a technique.
 
 # React recap
 
-_Skip this section if you are already comfortable with react_
+_Skip this section if you are already comfortable with React_
 
 React components map state to a "virtual-DOM" (a _View_), which is then mapped to platform elements for rendering. [Web](https://www.npmjs.com/package/react-dom) and *[native](http://facebook.github.io/react-native) are the obvious platform targets. But it is also illustrative to know the virtual-DOM can also be linked to completely different rendering pipelines e.g. [terminal](https://github.com/Yomguithereal/react-blessed), [VR](https://facebook.github.io/react-vr/), and [3d](https://github.com/Izzimach/react-three). 
 
@@ -27,7 +27,7 @@ React components map state to a "virtual-DOM" (a _View_), which is then mapped t
 All cross-platform code must contain the following _conceptual logic_ somewhere:
 
 ```sh
-# Pseudocode!
+### Pseudocode! ###
 IF platform is 'web' THEN
   browser.render '<button onClick="doLogin" />'
 ELSE IF platform is 'native' THEN
@@ -52,7 +52,7 @@ Expressions could end up ANYWHERE. And logically, the platform is not a run-time
 ### Basic idea
 
 ```sh
-  # Pseudocode!
+  ### Pseudocode! ###
   mapping = {
     web: {
       div: 'div',
@@ -96,7 +96,7 @@ But also because coupling `View` to a _react-native-web_'s implementation (even 
 A Component is a function, if we want to partially use a function (domain), but be able to parametise it later (platform) there is a pattern for that, the [factory function](https://www.ibm.com/developerworks/library/j-ft10/):
 
 ```js
-  // Psuedocode
+  // ### Psuedocode! ###
   function factory({Wrapper, Label, Button}) {
     const Component = props => (
       <Wrapper>
