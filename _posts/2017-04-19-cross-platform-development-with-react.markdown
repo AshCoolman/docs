@@ -1,20 +1,23 @@
 ---
 layout: post
-title:  "Pig-headed cross-platfrom development with React"
+title:  "Cross-platfrom development with React"
 description:  "I've been doing some prototyping with ReactNative, taking an existing web codebase to native"
 date:   2017-04-17 13:36:22
 categories: react, react-native, ios, android
 ---
 
+
+**DRAFT: Code samples are indicative only, and may include syntax errors. Please excuse any grammer or spelling sillyness**
+
 # Intro
 
 Every line of code is a liability, but not every line creates value. 
 
-This line of reasoning, makes the code reuse opporutinities given by [React Native](https://facebook.github.io/react-native/) very interesting. I've working on a protoype that takes web app code, and maximally reuses code (and QA). Its been very promising, but I'm still closing in on optimimal methodologies.
+Rebuilding React web apps in [React Native](https://facebook.github.io/react-native/) has great code/effort reuse potential. I've been building a protoype that does exactly that. After rebuilding two features, I've settled into a very technique that allows for 1:1 component reuse, but can be relaxed for certain components.
 
 ## Cross-platform React
 
-Theoretically _all_ domain code can be shared beween all platforms. That is to say, all platforms have the concept of the "Login button", and a "button pressed" event. But different platforms render the button and hook into its events differently. 
+Theoretically _all_ domain code can be shared beween all platforms. That is to say, all platforms have the concept of the "Login button", and a "button pressed" event. But different platforms render the button and handle its events differently. 
 
 React components build a "virtual-DOM", which is then mapped to platform elements for rendering. [Web](https://www.npmjs.com/package/react-dom) and *[native](http://facebook.github.io/react-native) are the obvious platform targets. But it is also illustrative to know Component's logical _View_ can also be linked to completely different rendering pipelines e.g. [terminal](https://github.com/Yomguithereal/react-blessed), [VR](https://facebook.github.io/react-vr/), and [3d](https://github.com/Izzimach/react-three). 
 
@@ -30,13 +33,13 @@ ENDIF
 
 But where is the best place for this?
 
-#### Option A: Map 1 x Native : 1 x Web
+#### Option A: Map 1×Native to 1×Web
 
 Mapping one React Native element to one browser element can be achieved in many ways - a hash object, a Higher order component or a library. A particularly mature & powerful library is [react-native-web](https://github.com/necolas/react-native-web). provides [react-native elements & API](https://github.com/necolas/react-native-web/blob/master/src/index.js) for the web, allowing React Native apps to produce web apps, with almost no effort.
 
 Our prototype needed the reverse workflow - but regardless, there are serious limitations that can effect styling and semantics. The project [self describes its use case](https://github.com/KodersLab/react-native-for-web#why-use-react-native-for-web) as cheap cross-platform with a [limited palette](https://necolas.github.io/react-native-web/storybook/?selectedKind=APIs&selectedStory=Clipboard&full=0&down=1&left=1&panelRight=0&downPanel=kadirahq%2Fstorybook-addon-actions%2Factions-panel). 
 
-#### Option B: platform switching expressions in render logic
+#### Option B: Platform switching logic
 
 Using expressions to render different markup per platform is possible. But messy. Plus, the platform is not a run-time variable, so it should not be treated as such.
 
@@ -45,7 +48,7 @@ Using expressions to render different markup per platform is possible. But messy
 React components are functions that build virtualDOM (domain), which maps to elements (platform). We can use _another_ [function to create a React component](https://www.ibm.com/developerworks/library/j-ft10/) _parametised_ with platform elements. Depending on your programming-heritage, you may refer to this _creating function_ as a `<component>Factory` or a [`<component>Partial`](https://medium.com/functional-javascript/higher-order-functions-78084829fff4) in the example below:
 
 
-##### Aside: Decouple style only
+##### ASIDE: Decouple style only
 
 This is how to us idiomatic React to **decouple style from the `Link` component**
 
@@ -140,6 +143,7 @@ import { View as Wrapper, Button as SayButton } from '../native/components';
 import { alert as doSay } from '../native/apis';
 export default LinkFactory({ Wrapper, Hat, SayButton, doSay });
 ```
+
 ```js
 // Link.web.js
 import LinkFactory from './LinkFactory';
@@ -148,7 +152,8 @@ import { alert as doSay } from '../web/apis';
 export default LinkFactory({ Wrapper, Hat, SayButton, doSay });
 ```
 
-##### Aside: Are Factories Higher order components?
+
+##### ASIDE: Are Factories Higher order components?
 
 > A higher-order component is a function that takes a component and returns a new component.
 
@@ -158,7 +163,7 @@ export default LinkFactory({ Wrapper, Hat, SayButton, doSay });
 
 － [Eloquent javascript](http://eloquentjavascript.net/05_higher_order.html#h_xxCc98lOBK)
 
-I'd guess not strictly as the React docs describe them.
+By a strict interpretation of the React docs, no. But regardless, they are still higher order _functions_.
 
 ##### Class component example
 
@@ -232,29 +237,80 @@ const Login = LoginFactory({
 });
 AppRegistry.registerComponent(<Login />);
 ```
+##### FAQ
+
+> Do you always reuse web code, that seems rigid?
+
+Almost never on an [atomic level](http://bradfrost.com/blog/post/atomic-web-design/#atoms), as this is closely tied to the platform.
+
+On a [molecular level](http://bradfrost.com/blog/post/atomic-web-design/#molecules), reuse happens ~90-95% of the time.
+The Main Nav and routes have **not** been reused - as they are not particularly complex.
+
+ NOTE: As this is an experiment I've pushed the 1:1 reuse harder than you might do in production i.e. to the point of inconvenience. And I've also changed web layouts and behavior to be optimised for native. 
+
+
+> Whats the process for refactoring into Component + Factory?
+
+I start with the container, and traced down to the lowest level components change them to use Factories. Then for each web component, I do the following tested steps:
+
+1. Create a Factory that creates the Component as-is
+2. Gradually move platform tags from Factory, into the Component's factory call (leave platform-agnostic tags in the Factory).
+3. Extract any browser APIs from the Factory, and pass them in as wrapped functions/options.
+4. Make sure all text is wrapped in markup (ReactNative does not allow unwrapped text)
+
+> Whats the process for using Factory to create Native Component?
+
+I start with the highest level container, then implement down.
+
+1. Create new Component (Factory call with stubs)
+2. Gradually implement each stub as:
+  * platform element/API OR
+  * new Component (Factory call with stubs) REPEAT STEP 1
+
+> So what does this look like at scale?
+
+After creating the Factory, native development is business-as-usual, except you don't worry about domain logic. You only need to worry about which native elements to use, and creating react versions of platform APIs.
+
+> How is the project organised?
+
+Made an entirely new project for native, that has an npm dependency on the web project. Because `npm link` is not supported by the build system in, I've had to so some hacks. This probably won't scale to teams in its current form. Will either unify the code base, or improve the build system
 
 ## Analysis of Cross-platform Factory technique
 
+The best thing:
+
+* Optional reuse of domain code including the view
+
 Good things:
 
-* ComponentFactory markup is purely domain
-* Component markup is purely presentational (feels so sensible)
-* You constantly decouple out of nessecity, which a great code trait to have in this webcomponenty world
-* Refactoring is pretty simple and brainless (largely due to above)
+* Its quick
+* ComponentFactory markup is purely domain, Component markup is purely presentational
+* You constantly decouple out of nessecity (web-componenty)
+* Basic refactoring into Factories is easy
 * You have 100% flexibility (1:N) of elements, styles and props
-* Requirement comprehension cost is paid once and QA effort is (much?) lower
+
+The worst thing:
+
+* Working with existing code can be hard:
+  * Non-semantic web markup has to be made semantic
+  * Code highly-coupled to browser can be hard be uncouple
 
 Bad things:
 
 * You must be able to wrap all platforms apis (mostly easy, but sometimes complicated)
-* Because the boundry between domain and presentation markup is so distinct, I left my Component files get messy (but simple). It would be a discipline of developers to always "pull out" atomic components for reuse.
+* Functions creating functions is idiomatic React, but its still Advanced
 
+## Anaysis of React Native
+
+Best thing: requirement-comprehension-cost is paid once and QA effort is (much?) lower
+
+Worst thing: the developer experinces is shaky
 ## Ongoing Questions
 
-* How much confidence does the existing web unit/component tests give? 
-* What is the DX of selenium tests for native apps?
+* How much confidence does the existing web unit/component tests give?
+* What is the DX of selenium tests for native apps? (can e2e tests be reused?)
 * How to best organise multi-platform codebases?
-* Would HAL be a better alternative than packager
+* Would [Haul](https://github.com/callstack-io/haul) be a better alternative than packager?
 
 ## The prototype
 
@@ -273,11 +329,9 @@ Tech used:
 * styled-components
 * react-bootstrap
 
-#### Rational
-
-I converted two features to the app, using mobile designs were they existing and elborating were they didnt. QA is being undergone as a formal process, but we are not being "production-strict". The emphasis has been on getting a effort-efficient NativeApp that creates value for our customers - rather than pushing for a magical experience.
-
 #### Web features ported to React Native
+
+Still under QA
 
 The first feature is a list view:
 
