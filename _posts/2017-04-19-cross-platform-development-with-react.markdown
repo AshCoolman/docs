@@ -250,8 +250,7 @@ Almost never on an [atomic level](http://bradfrost.com/blog/post/atomic-web-desi
 On a [molecular level](http://bradfrost.com/blog/post/atomic-web-design/#molecules), reuse happens ~90-95% of the time.
 The Main Nav and routes have **not** been reused - as they are not particularly complex.
 
- NOTE: As this is an experiment I've pushed the 1:1 reuse harder than you might do in production i.e. _to the point of inconvenience_. And I've also changed web layouts and behavior to be optimised for native. 
-
+ NOTE: As this is an experiment Someimtes I pushed the 1:1 reuse harder than you might do in production i.e. _to the point of inconvenience_. And sometimes I pushed web layouts and behavior to be optimised for native.
 
 > Whats the process for refactoring into Component + Factory?
 
