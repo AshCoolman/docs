@@ -17,9 +17,9 @@ Rebuilding React web apps in [React Native](https://facebook.github.io/react-nat
 
 ## Cross-platform React
 
-Theoretically _all_ domain code can be shared beween all platforms. That is to say, all platforms have the concept of the "Login button", and a "button pressed" event. But different platforms render the button and handle its events differently. 
+Theoretically _all_ domain code can be shared beween _all_ platforms. That is to say, all platforms have the concept of the "Login button", and a "button pressed" event. But different platforms render the button and handle its events differently. 
 
-React components build a "virtual-DOM", which is then mapped to platform elements for rendering. [Web](https://www.npmjs.com/package/react-dom) and *[native](http://facebook.github.io/react-native) are the obvious platform targets. But it is also illustrative to know Component's logical _View_ can also be linked to completely different rendering pipelines e.g. [terminal](https://github.com/Yomguithereal/react-blessed), [VR](https://facebook.github.io/react-vr/), and [3d](https://github.com/Izzimach/react-three). 
+React components map state to a "virtual-DOM" (a _View_), which is then mapped to platform elements for rendering. [Web](https://www.npmjs.com/package/react-dom) and *[native](http://facebook.github.io/react-native) are the obvious platform targets. But it is also illustrative to know the virtual-DOM can also be linked to completely different rendering pipelines e.g. [terminal](https://github.com/Yomguithereal/react-blessed), [VR](https://facebook.github.io/react-vr/), and [3d](https://github.com/Izzimach/react-three). 
 
 All cross-platform code must contain the following _conceptual logic_ somewhere:
 
@@ -35,17 +35,21 @@ But where is the best place for this?
 
 #### Option A: Map 1×Native to 1×Web
 
-Mapping one React Native element to one browser element can be achieved in many ways - a hash object, a Higher order component or a library. A particularly mature & powerful library is [react-native-web](https://github.com/necolas/react-native-web). provides [react-native elements & API](https://github.com/necolas/react-native-web/blob/master/src/index.js) for the web, allowing React Native apps to produce web apps, with almost no effort.
+Mapping one React Native element to one browser element can be achieved in many ways - a hash object, a Higher order component or a library. A particularly mature & powerful library is [react-native-web](https://github.com/necolas/react-native-web). provides [react-native elements & API (including styles!! :fire:)](https://github.com/necolas/react-native-web/blob/master/src/index.js) for the web, allowing React Native apps to produce web apps, with almost no effort.
 
-Our prototype needed the reverse workflow - but regardless, there are serious limitations that can effect styling and semantics. The project [self describes its use case](https://github.com/KodersLab/react-native-for-web#why-use-react-native-for-web) as cheap cross-platform with a [limited palette](https://necolas.github.io/react-native-web/storybook/?selectedKind=APIs&selectedStory=Clipboard&full=0&down=1&left=1&panelRight=0&downPanel=kadirahq%2Fstorybook-addon-actions%2Factions-panel). 
+The prototype I'm buiding needs **the reverse workflow, web to native**, so its not really appropriate. But regardless, there are  serious styling/semantics limitations in using this project (and technique). The project [self describes its use case](https://github.com/KodersLab/react-native-for-web#why-use-react-native-for-web) as cheap cross-platform with a [limited palette](https://necolas.github.io/react-native-web/storybook/?selectedKind=APIs&selectedStory=Clipboard&full=0&down=1&left=1&panelRight=0&downPanel=kadirahq%2Fstorybook-addon-actions%2Factions-panel). 
 
 #### Option B: Platform switching logic
 
-Using expressions to render different markup per platform is possible. But messy. Plus, the platform is not a run-time variable, so it should not be treated as such.
+Using expressions to render different markup per platform is possible. But it means expressions could end up ANYWHERE. And logically, the platform is not a run-time variable, so it should not be treated as such.
 
 #### Option C: Use domain components parametised by platform
 
-React components are functions that build virtualDOM (domain), which maps to elements (platform). We can use _another_ [function to create a React component](https://www.ibm.com/developerworks/library/j-ft10/) _parametised_ with platform elements. Depending on your programming-heritage, you may refer to this _creating function_ as a `<component>Factory` or a [`<component>Partial`](https://medium.com/functional-javascript/higher-order-functions-78084829fff4) in the example below:
+NOTE: There are a few ways to acheive this - described is just the "simplist" idiomatic technique I first reached for - and never found a reason to change
+
+##### React recap
+
+React components are functions that build virtualDOM (domain), which maps to elements (platform). We can use _another function_ to create a React component ([factory function](https://www.ibm.com/developerworks/library/j-ft10/) _parametised_ with platform elements. Depending on your programming-heritage/preference, you might refer the _factory_ as a [partial](https://medium.com/functional-javascript/higher-order-functions-78084829fff4) instead.
 
 
 ##### ASIDE: Decouple style only
@@ -246,7 +250,7 @@ Almost never on an [atomic level](http://bradfrost.com/blog/post/atomic-web-desi
 On a [molecular level](http://bradfrost.com/blog/post/atomic-web-design/#molecules), reuse happens ~90-95% of the time.
 The Main Nav and routes have **not** been reused - as they are not particularly complex.
 
- NOTE: As this is an experiment I've pushed the 1:1 reuse harder than you might do in production i.e. to the point of inconvenience. And I've also changed web layouts and behavior to be optimised for native. 
+ NOTE: As this is an experiment I've pushed the 1:1 reuse harder than you might do in production i.e. _to the point of inconvenience_. And I've also changed web layouts and behavior to be optimised for native. 
 
 
 > Whats the process for refactoring into Component + Factory?
@@ -275,7 +279,9 @@ After creating the Factory, native development is business-as-usual, except you 
 
 Made an entirely new project for native, that has an npm dependency on the web project. Because `npm link` is not supported by the build system in, I've had to so some hacks. This probably won't scale to teams in its current form. Will either unify the code base, or improve the build system
 
-## Analysis of Cross-platform Factory technique
+## Cross-platform prototype developer experience
+
+### Using Component Factories
 
 The best thing:
 
@@ -300,7 +306,7 @@ Bad things:
 * You must be able to wrap all platforms apis (mostly easy, but sometimes complicated)
 * Functions creating functions is idiomatic React, but its still Advanced
 
-## Anaysis of React Native
+### Using React Native
 
 Best thing: requirement-comprehension-cost is paid once and QA effort is (much?) lower
 
