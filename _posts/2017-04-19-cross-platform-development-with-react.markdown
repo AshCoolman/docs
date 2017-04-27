@@ -135,7 +135,7 @@ export default LinkFactory({
   SayButton: props => <Touch onPress={props.onClick}>
     <Text {...props} />
   </Touch>,
-  doSay: Alert.alert // Uses dialogue heading
+  doSay: Alert.alert /* Uses dialogue heading */
 })
 ```
 Real world refinements assuming use of UI frameworks for [native](https://docs.nativebase.io/) and [web](http://www.material-ui.com/#/components/app-bar) and Api wrappers:
@@ -243,7 +243,7 @@ AppRegistry.registerComponent(<Login />);
 ```
 ##### FAQ
 
-> Do you always reuse web code, that seems rigid?
+###### > Reusing everything seems rigid - did you always reuse web code?
 
 Almost never on an [atomic level](http://bradfrost.com/blog/post/atomic-web-design/#atoms), as this is closely tied to the platform.
 
@@ -252,7 +252,7 @@ The Main Nav and routes have **not** been reused - as they are not particularly 
 
  NOTE: As this is an experiment Someimtes I pushed the 1:1 reuse harder than you might do in production i.e. _to the point of inconvenience_. And sometimes I pushed web layouts and behavior to be optimised for native.
 
-> Whats the process for refactoring into Component + Factory?
+###### > Whats the process for refactoring into Component + Factory?
 
 I start with the container, and traced down to the lowest level components change them to use Factories. Then for each web component, I do the following tested steps:
 
@@ -261,7 +261,7 @@ I start with the container, and traced down to the lowest level components chang
 3. Extract any browser APIs from the Factory, and pass them in as wrapped functions/options.
 4. Make sure all text is wrapped in markup (ReactNative does not allow unwrapped text)
 
-> Whats the process for using Factory to create Native Component?
+###### > Whats the process for using Factory to create Native Component?
 
 I start with the highest level container, then implement down.
 
@@ -270,11 +270,11 @@ I start with the highest level container, then implement down.
   * platform element/API OR
   * new Component (Factory call with stubs) REPEAT STEP 1
 
-> So what does this look like at scale?
+###### > What is the developer experience with large components?
 
 After creating the Factory, native development is business-as-usual, except you don't worry about domain logic. You only need to worry about which native elements to use, and creating react versions of platform APIs.
 
-> How is the project organised?
+###### > How is the project organised?
 
 Made an entirely new project for native, that has an npm dependency on the web project. Because `npm link` is not supported by the build system in, I've had to so some hacks. This probably won't scale to teams in its current form. Will either unify the code base, or improve the build system
 
