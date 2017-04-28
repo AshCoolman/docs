@@ -2,10 +2,9 @@
 layout: post
 title:  "Cross-platfrom development with React"
 description:  "I've been doing some prototyping with ReactNative, taking an existing web codebase to native"
-date:   2017-04-17 13:36:22
+date:   2017-04-19 13:36:22
 categories: react, react-native, ios, android
 ---
-
 
 **DRAFT: Code samples are indicative only, and may include syntax errors. Please excuse any grammer or spelling sillyness**
 
@@ -13,7 +12,7 @@ categories: react, react-native, ios, android
 
 Every line of code is a liability, but not every line creates value. This is particuarly interesting when it comes to building native & web apps that offer the same features. Theoretically _all_ domain code can be shared beween _all_ platforms. That is to say, all platforms have the concept of the "Login button", and a "button pressed" event. But different platforms render the button and handle its events differently. 
 
-Rebuilding React web apps in [React Native](https://facebook.github.io/react-native/) has great code/effort reuse potential. I've been building a protoype that **takes code from an existing web app, and reuses it a native app to provide the same features**. After rebuilding two features, I've settled on a technique.
+Rebuilding React web apps in [React Native](https://facebook.github.io/react-native/) has great code/effort reuse potential. I've been building a protoype that **takes code from an existing web app, and reuses it in a native app to provide the same features**. After rebuilding two features, I've settled on a technique, which I will describe in this article.
 
 # React recap
 
@@ -47,7 +46,7 @@ Using expressions in view logic render different markup per platform
 
 Expressions could end up ANYWHERE. And logically, the platform is not a run-time variable, so it should not be treated as such.
 
-## Apprach two: 1:1 mapping of platform implementations
+## Approach two: 1:1 mapping of platform implementations
 
 ### Basic idea
 
@@ -82,12 +81,14 @@ I did not try out this technique.
 
 This is partly because I'm building with the **reverse workflow, Web to Native**. 
 
-But also because coupling `View` to a _react-native-web_'s implementation (even if it is amazing) seems too rigid to achieve the design I want. This coupling also produces semantic limitations that would immediately need to be overcome:
+But also because coupling `View` to a _react-native-web_'s implementation (even if it is amazing) seems too rigid to achieve the design I want. This coupling have immediately introduce some hurdles:
 
  e.g. 
- - there is no checkbox
- - having platforms exactly mimicking the style is not helpful
-
+ - The limited palette would need to be extended e.g. Checkbox
+ - No clear path to use UI framework
+ - library encourages "App-like" unified designs, while I'm coing for  vastly different designed for mobile vs web
+ 
+Even though this technique is misaligned with the goals of the prototype, it is a great approach - largely due to _react-native-web_, and I'd like to try this in the future.
 
 ## Approach three: Componenents parametised by platform
 
@@ -285,12 +286,10 @@ Best thing:
 
 Good things:
 
-* Its just functions™, thus React idiomatic 
-* Clear seperation of domain:platform code
-* Decoupling increased
-* Its fun _subjective_
+* Its just functions™, quite "React idiomatic"
+* Clear seperation of domain vs platform code
 
-The worst thing:
+Worst thing:
 
 * Working with existing code can be hard:
   * Non-semantic web markup has to be made semantic
@@ -298,8 +297,8 @@ The worst thing:
 
 Bad things:
 
-* You must be able to wrap all platforms apis (mostly easy, but sometimes complicated)
-* Functions creating functions may be idiomatic, but its still _Advanced_
+* Must wrap platforms apis
+* Functions creating functions is _Advanced_
 
 # FAQ
 
@@ -336,12 +335,6 @@ After creating the Factory, native development is business-as-usual, except you 
 
 Made an entirely new project for native, that has an npm dependency on the web project. Because `npm link` is not supported by the build system in, I've had to so some hacks. This probably won't scale to teams in its current form. Will either unify the code base, or improve the build system
 
-# Using React Native
-
-Best thing: requirement-comprehension-cost is paid once and QA effort is (much?) lower
-
-Worst thing: the developer experinces is shaky
-
 # Ongoing Questions
 
 * How much confidence does the existing web unit/component tests give?
@@ -353,7 +346,7 @@ Worst thing: the developer experinces is shaky
 
 ## Existing web app
 
-State of current web app: 
+Prior work: 
 
 * 2 months of coding (~ 12k LOC)
 * ~ 80% test coverage
@@ -383,35 +376,4 @@ The second feature is a detail view:
 * Major components: 2 containers, ~10 x stateless
 * 2 x API
 * includes "read more" button that only appears if text is long enough, markdown rendering, and position fixed boxes
-
-# Technology notes
-
-#### [ReactNative](https://facebook.github.io/react-native/)
-
-Compared to React web developement:
-
-* Shakey developer experience - a few strange problems with strange solutions, frequent crashes
-* Does not use webpack, uses packager instead (watchman)
-* Slightly more difficult to debug than web
-
-
-#### [Expo](https://docs.expo.io/versions/v16.0.0/index.html) (via create-react-native-app)
-
-Incredible improvments for
-
-* Stability
-* developers
-* QA testers (test link from QR code)
-
-#### [styled-components](https://github.com/styled-components/styled-components)
-
-A natural fit for `<component>Factory`
-
-#### [react-base](https://nativebase.io/)
-
-At the time of this writing, of all React Native UI frameworks:
-
-* expressive markup
-* solid docs &  community support
-* theming method is quite a buy-in ( we will probably transition away)
 
