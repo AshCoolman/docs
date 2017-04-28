@@ -282,23 +282,23 @@ This was the first technique I first reached for, and never found a reason to ch
 
 Best thing:
 
-* Optional reuse of domain code including the view
+* Native dev reuses all domain code, including View
 
 Good things:
 
 * Its just functions™, quite "React idiomatic"
 * Clear seperation of domain vs platform code
+* Easy to _not_ reuse when appropriate
+* Reusing all apps
 
 Worst thing:
 
-* Working with existing code can be hard:
-  * Non-semantic web markup has to be made semantic
-  * Code highly-coupled to browser can be hard be uncouple
+* Code highly-coupled to browser must be uncoupled
 
 Bad things:
 
 * Must wrap platforms apis
-* Functions creating functions is _Advanced_
+* Functions creating functions may be idiomatic, but it is _Advanced_
 
 # FAQ
 
@@ -349,7 +349,7 @@ Made an entirely new project for native, that has an npm dependency on the web p
 Prior work: 
 
 * 2 months of coding (~ 12k LOC)
-* ~ 80% test coverage
+* ~ 80% test coveragef
 * limited mobile designs
 
 Tech used:
