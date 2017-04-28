@@ -361,19 +361,15 @@ Tech used:
 
 ## Web features ported to React Native
 
-Still under QA
-
 The first feature is a list view:
 
 * ~ 2 weeks dev time
 * Major components: 1 x container, 1 x stateless component
-* 1 API endpoints
-* infinite scrolling
+* Major features: infinite scrolling
 
 The second feature is a detail view:
 
 * ~ 4 weeks dev time
-* Major components: 2 containers, ~10 x stateless
-* 2 x API
-* includes "read more" button that only appears if text is long enough, markdown rendering, and position fixed boxes
+* Major components: 2 x containers, ~10 x stateless
+* Major features: includes "read more" button that only appears if text is long enough, markdown rendering, and position fixed boxes
 
