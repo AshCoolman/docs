@@ -317,7 +317,7 @@ _This question was raised by my very talented workmate, Georgina Gilberth_
 
 First, its worth pointing out, I am trying to come up with a technique for reusing _all_ domain code - including the view logic contained in `render()`. If you don't want to reuse the view logic, the standard react-native development method should suit you fine.
 
-Secondly, you _can_ use HOC to achieve the same outcome. Here "elements" are passed to HOC, which then passes them to the component via props. YMMV but I dislike the use of props here. 
+Secondly, you _can_ use HOC to achieve the same outcome. In the example below "elements" are passed to HOC, which then passes them to the component via props.
 
 ```
 // ### Pseudocode ### 
@@ -344,7 +344,7 @@ const ThumbnailNative = ThumbnailHOC(
 );
 ```
 
-NOTE: The Factory method is essentially the HOC above "partially applied" with the `Component` parameter. 
+YMMV but I dislike the use of props here. NOTE: The Factory method is essentially the HOC above "partially applied" with the `Component` parameter. 
 
 **Have you got another HOC suggestion? PLEASE LEAVE A COMMENT I'd love to hear it!**
 
