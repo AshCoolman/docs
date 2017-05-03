@@ -8,7 +8,7 @@ categories: react, react-native, ios, android
 
 **DRAFT: Code samples are indicative only, and may include syntax errors. Please excuse any grammer or spelling sillyness**
 
-# Using the same component in React & React-native
+# A single React component for both web and native
 
 Every line of code is a liability, but not every line creates value. This is especially interesting when it comes to building native & web apps that offer the same features. Theoretically, _all_ domain code can be shared between _all_ platforms. That is to say, all platforms have the concept of the "Login button", and a "button pressed" event. But different platforms render the button and handle its events differently. 
 
