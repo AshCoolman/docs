@@ -6,13 +6,15 @@ date:   2017-04-19 13:36:22
 categories: react, react-native, ios, android
 ---
 
-**DRAFT: Code samples are indicative only, and may include syntax errors. Please excuse any grammer or spelling sillyness**
+**Code samples are indicative only, and may include syntax errors**
 
 # A single React component for both web and native
 
 Every line of code is a liability, but not every line creates value. This is especially interesting when it comes to building native & web apps that offer the same features. Theoretically, _all_ domain code can be shared between _all_ platforms. That is to say, all platforms have the concept of the "Login button", and a "button pressed" event. But different platforms render the button and handle its events differently. 
 
-Rebuilding React web apps in [React Native](https://facebook.github.io/react-native/) has great code/effort reuse potential. I've been building a prototype that **takes a React web components, and maximally reuses them in a ReactNative app**. After rebuilding two features, I've settled on a technique, which I will describe in this article, along with my experiences and some observations.
+Rebuilding React web apps in [React Native](https://facebook.github.io/react-native/) has great code/effort reuse potential. Typically when people talk about cross-platform in React, they are talking about learn-once, write anywhere or using a set of shared primitives that are understood across platforms. This article explores a third option.
+
+I've been building a prototype that **takes a React web components, and maximally reuses them in a ReactNative app**. After rebuilding two features, I've settled on a technique, which I will describe in this article, along with my experiences and some observations.
 
 # React recap
 
