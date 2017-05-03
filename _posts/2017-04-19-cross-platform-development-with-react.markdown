@@ -303,11 +303,11 @@ Bad things:
 # FAQ
 
 
-#### What is wrong with react-natives dynamic build system? ( Added 3-May-2017 )
+#### What is wrong with react-natives file-extension-based dynamic build system ? ( Added 3-May-2017 )
 
 _This question was raised by my very talented workmate, Georgina Gilberth_
 
-Nothing per se, it is great for delivering different logic to different devices. The solution does not fit so well when I want deliver the same view code to different platforms.
+Nothing _per se_, it is great for delivering different logic to different devices. The solution does not fit so well when I want deliver the same view code to different platforms.
 
 #### So why not use just use Higher order components? ( Added 3-May-2017)
 
@@ -315,7 +315,7 @@ _This question was raised by my very talented workmate, Georgina Gilberth_
 
 First, its worth pointing out, I am trying to come up with a technique for reusing _all_ domain code - including the view logic contained in `render()`. If you don't want to reuse the view logic, the standard react-native development method should suit you fine.
 
-Secondly, you _can_ use HOC to acheive the same outcome. Here "elements" are passed to HOC, which then passes them to the component via props. YMMV but I dislike the use of props here. 
+Secondly, you _can_ use HOC to achieve the same outcome. Here "elements" are passed to HOC, which then passes them to the component via props. YMMV but I dislike the use of props here. 
 
 ```
 // ### Pseudocode ### 
@@ -348,9 +348,9 @@ NOTE: The Factory method is essentially the HOC above "partially applied" with t
 
 #### Reusing everything seems rigid - did you always reuse web code?
 
-I reused components 90% of the time. The other 10% of the time I rewrote existing components because it was more convieniant.
+I reused components 90% of the time. The other 10% of the time I rewrote existing components because it was more convenient.
 
-I almost never reused [atomic level](http://bradfrost.com/blog/post/atomic-web-design/#atoms) components. They are most closely tied to the platform, and thus subject to the implementation details. For instance browsers will receive a click on almost anything, while native only detects a press on a special tags.
+I almost never reused the implementation of [atomic level](http://bradfrost.com/blog/post/atomic-web-design/#atoms) components. They are most closely tied to the platform, and thus subject to the implementation details. For instance browsers will receive a click on almost anything, while native only detects a press on a special tags.
 
 On a [molecular level](http://bradfrost.com/blog/post/atomic-web-design/#molecules), reuse happens ~90-95% of the time.
 The Main Nav and routes have **not** been reused - as they are not particularly complex.
