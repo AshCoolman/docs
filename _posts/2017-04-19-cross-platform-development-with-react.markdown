@@ -6,13 +6,15 @@ date:   2017-04-19 13:36:22
 categories: react, react-native, ios, android
 ---
 
-**DRAFT: Code samples are indicative only, and may include syntax errors. Please excuse any grammer or spelling sillyness**
+**Code samples are indicative only, and may include syntax errors**
 
 # A single React component for both web and native
 
 Every line of code is a liability, but not every line creates value. This is especially interesting when it comes to building native & web apps that offer the same features. Theoretically, _all_ domain code can be shared between _all_ platforms. That is to say, all platforms have the concept of the "Login button", and a "button pressed" event. But different platforms render the button and handle its events differently. 
 
-Rebuilding React web apps in [React Native](https://facebook.github.io/react-native/) has great code/effort reuse potential. I've been building a prototype that **takes a React web components, and maximally reuses them in a ReactNative app**. After rebuilding two features, I've settled on a technique, which I will describe in this article, along with my experiences and some observations.
+Rebuilding React web apps in [React Native](https://facebook.github.io/react-native/) has great code/effort reuse potential. Typically when people talk about cross-platform in React, they are talking about learn-once, write anywhere or using a set of shared primitives that are understood across platforms. This article explores a third option.
+
+I've been building a prototype that **takes a React web components, and maximally reuses them in a ReactNative app**. After rebuilding two features, I've settled on a technique, which I will describe in this article, along with my experiences and some observations.
 
 # React recap
 
@@ -303,11 +305,11 @@ Bad things:
 # FAQ
 
 
-#### What is wrong with react-natives dynamic build system? ( Added 3-May-2017 )
+#### What is wrong with react-natives file-extension-based dynamic build system ? ( Added 3-May-2017 )
 
 _This question was raised by my very talented workmate, Georgina Gilberth_
 
-Nothing per se, it is great for delivering different logic to different devices. The solution does not fit so well when I want deliver the same view code to different platforms.
+Nothing _per se_, it is great for delivering different logic to different devices. The solution does not fit so well when I want deliver the same view code to different platforms.
 
 #### So why not use just use Higher order components? ( Added 3-May-2017)
 
@@ -315,7 +317,7 @@ _This question was raised by my very talented workmate, Georgina Gilberth_
 
 First, its worth pointing out, I am trying to come up with a technique for reusing _all_ domain code - including the view logic contained in `render()`. If you don't want to reuse the view logic, the standard react-native development method should suit you fine.
 
-Secondly, you _can_ use HOC to acheive the same outcome. Here "elements" are passed to HOC, which then passes them to the component via props. YMMV but I dislike the use of props here. 
+Secondly, you _can_ use HOC to achieve the same outcome. Here "elements" are passed to HOC, which then passes them to the component via props. YMMV but I dislike the use of props here. 
 
 ```
 // ### Pseudocode ### 
@@ -348,9 +350,9 @@ NOTE: The Factory method is essentially the HOC above "partially applied" with t
 
 #### Reusing everything seems rigid - did you always reuse web code?
 
-I reused components 90% of the time. The other 10% of the time I rewrote existing components because it was more convieniant.
+I reused components 90% of the time. The other 10% of the time I rewrote existing components because it was more convenient.
 
-I almost never reused [atomic level](http://bradfrost.com/blog/post/atomic-web-design/#atoms) components. They are most closely tied to the platform, and thus subject to the implementation details. For instance browsers will receive a click on almost anything, while native only detects a press on a special tags.
+I almost never reused the implementation of [atomic level](http://bradfrost.com/blog/post/atomic-web-design/#atoms) components. They are most closely tied to the platform, and thus subject to the implementation details. For instance browsers will receive a click on almost anything, while native only detects a press on a special tags.
 
 On a [molecular level](http://bradfrost.com/blog/post/atomic-web-design/#molecules), reuse happens ~90-95% of the time.
 The Main Nav and routes have **not** been reused - as they are not particularly complex.
