@@ -39,3 +39,6 @@ At the time of this writing, of all React Native UI frameworks:
 * expressive markup
 * solid docs &  community support
 * theming method is quite a buy-in ( we will probably transition away)
+
+
+* Don't use `console.error`, React native does not support it
