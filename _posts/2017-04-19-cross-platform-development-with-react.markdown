@@ -8,11 +8,11 @@ categories: react, react-native, ios, android
 
 **DRAFT: Code samples are indicative only, and may include syntax errors. Please excuse any grammer or spelling sillyness**
 
-# Cross-platfrom web/native development with React & React Native
+# A single React component for both web and native
 
-Every line of code is a liability, but not every line creates value. This is particuarly interesting when it comes to building native & web apps that offer the same features. Theoretically _all_ domain code can be shared beween _all_ platforms. That is to say, all platforms have the concept of the "Login button", and a "button pressed" event. But different platforms render the button and handle its events differently. 
+Every line of code is a liability, but not every line creates value. This is especially interesting when it comes to building native & web apps that offer the same features. Theoretically, _all_ domain code can be shared between _all_ platforms. That is to say, all platforms have the concept of the "Login button", and a "button pressed" event. But different platforms render the button and handle its events differently. 
 
-Rebuilding React web apps in [React Native](https://facebook.github.io/react-native/) has great code/effort reuse potential. I've been building a protoype that **takes code from an existing web app, and reuses it in a native app to provide the same features**. After rebuilding two features, I've settled on a technique, which I will describe in this article.
+Rebuilding React web apps in [React Native](https://facebook.github.io/react-native/) has great code/effort reuse potential. I've been building a prototype that **takes a React web components, and maximally reuses them in a ReactNative app**. After rebuilding two features, I've settled on a technique, which I will describe in this article, along with my experiences and some observations.
 
 # React recap
 
@@ -34,7 +34,7 @@ ELSE IF platform is 'native' THEN
 ENDIF
 ```
 
-But where is the best place for this? There are a number of approaches (that can also be blended). Here is a quick run down of the approaches I considered:
+But where is the best place for this? There are a number of approaches (that can also be blended). Here is a quick rundown of the approaches I considered:
 
 ## Approach one: runtime detection
 
@@ -73,7 +73,7 @@ So `div` always maps to `View`, hence 1:1 mapping.
 
 ### Details
 
-There are a number of ways to do this, incbut one quite amazing library that can help is [react-native-web](https://github.com/necolas/react-native-web).  The project [self describes its use case](https://github.com/KodersLab/react-native-for-web#why-use-react-native-for-web) as cheap cross-platform with a [limited palette](https://necolas.github.io/react-native-web/storybook/?selectedKind=APIs&selectedStory=Clipboard&full=0&down=1&left=1&panelRight=0&downPanel=kadirahq%2Fstorybook-addon-actions%2Factions-panel). It provides [react-native elements & API (including styles!! :fire:)](https://github.com/necolas/react-native-web/blob/master/src/index.js) for the web - e.g. a `View` component for the browser that supports _exactly_ the same style attributes as the React Native version. This means almost _effortless_ conversion from a ReactNative app to a web app.
+There are a number of ways to do this, but one quite amazing library that can help is [react-native-web](https://github.com/necolas/react-native-web).  The project [self-describes its use case](https://github.com/KodersLab/react-native-for-web#why-use-react-native-for-web) as cheap cross-platform with a [limited palette](https://necolas.github.io/react-native-web/storybook/?selectedKind=APIs&selectedStory=Clipboard&full=0&down=1&left=1&panelRight=0&downPanel=kadirahq%2Fstorybook-addon-actions%2Factions-panel). It provides [react-native elements & API (including styles!! :fire:)](https://github.com/necolas/react-native-web/blob/master/src/index.js) for the web - e.g. a `View` component for the browser that supports _exactly_ the same style attributes as the React Native version. This means almost _effortless_ conversion from a ReactNative app to a web app.
 
 ### Conclusion
 
@@ -81,16 +81,16 @@ I did not try out this technique.
 
 This is partly because I'm building with the **reverse workflow, Web to Native**. 
 
-But also because coupling `View` to a _react-native-web_'s implementation (even if it is amazing) seems too rigid to achieve the design I want. This coupling have immediately introduce some hurdles:
+But also because coupling `View` to a _react-native-web_'s implementation (even if it is amazing) seems too rigid to achieve the design I want:
 
  e.g. 
  - The limited palette would need to be extended e.g. Checkbox
  - No clear path to use UI framework
- - library encourages "App-like" unified designs, while I'm coing for  vastly different designed for mobile vs web
+ - library encourages "App-like" unified designs, while I'm going for vastly different designs for mobile and web
  
 Even though this technique is misaligned with the goals of the prototype, it is a great approach - largely due to _react-native-web_, and I'd like to try this in the future.
 
-## Approach three: Componenents parametised by platform
+## Approach three: Components parameterised by platform
 
 ### Basic idea
 
@@ -114,7 +114,7 @@ A Component is a function, if we want to partially use a function (domain), but 
   });
 ```
 
-Depending on your programming-heritage/preference, you might refer the _factory_ as a [partial](https://medium.com/functional-javascript/higher-order-functions-78084829fff4) instead.
+Depending on your programming-heritage/preference, you might refer to the _factory_ as a [partial](https://medium.com/functional-javascript/higher-order-functions-78084829fff4) instead.
 
 ### Details
 
@@ -196,7 +196,7 @@ By a strict interpretation, _potentially_ - it takes a hash of components.
 
 － [Eloquent javascript](http://eloquentjavascript.net/05_higher_order.html#h_xxCc98lOBK)
 
-But they are definately Higher-order functions
+But they are definitely Higher-order functions
 
 #### Class component example
 
@@ -278,16 +278,16 @@ AppRegistry.registerComponent(<Login />);
 
 ### Conclusion
 
-This was the first technique I first reached for, and never found a reason to change. I pushed and pulled the features, but seemed to always find an elegant solution. For one feature I was quite hard nosed about getting a very accurate version of the web app, for another feature I signifigantly changed the behavior and added behavior so the feature better sympathised with iOS.
+This was the first technique I first reached for, and never found a reason to change. I pushed and pulled the features, but seemed to always find an elegant solution. For one feature I was quite hard-nosed about getting a very accurate version of the web app, for another feature I significantly changed the behavior and added behavior so the feature better sympathised with iOS.
 
 Best thing:
 
-* Native dev reuses all domain code, including View
+* Native development reuses all domain code, including views
 
 Good things:
 
-* Its just functions™, quite "React idiomatic"
-* Clear seperation of domain vs platform code
+* It is just functions™
+* Clear separation of domain vs platform code
 * Easy to _not_ reuse when appropriate
 * Reusing all apps
 
@@ -297,19 +297,65 @@ Worst thing:
 
 Bad things:
 
-* Must wrap platforms apis
+* Must wrap platforms APIs
 * Functions creating functions may be idiomatic, but it is _Advanced_
 
 # FAQ
 
+
+#### What is wrong with react-natives dynamic build system? ( Added 3-May-2017 )
+
+_This question was raised by my very talented workmate, Georgina Gilberth_
+
+Nothing per se, it is great for delivering different logic to different devices. The solution does not fit so well when I want deliver the same view code to different platforms.
+
+#### So why not use just use Higher order components? ( Added 3-May-2017)
+
+_This question was raised by my very talented workmate, Georgina Gilberth_
+
+First, its worth pointing out, I am trying to come up with a technique for reusing _all_ domain code - including the view logic contained in `render()`. If you don't want to reuse the view logic, the standard react-native development method should suit you fine.
+
+Secondly, you _can_ use HOC to acheive the same outcome. Here "elements" are passed to HOC, which then passes them to the component via props. YMMV but I dislike the use of props here. 
+
+```
+// ### Pseudocode ### 
+
+// Platform agnostic
+const ThumbnailAbstract = props => {
+  return <props.el.Wrapper>
+    <props.el.Label>{props.name}</props.el.Label>
+    <props.el.Content source={props.data} />
+  </props.el.Wrapper>
+};
+
+// Sub ComponentHOC HOC 
+function SubComponentHOC(Component, elements) {
+  return <Component el={elements} {...props} />
+}
+
+// Thumbnail web
+export { Text as Label, View as Wrapper, Image as Content } from 'react-native';
+
+const ThumbnailNative = ThumbnailHOC(
+  ThumbnailAbstract,
+  {Label, Wrapper, Content}
+);
+```
+
+NOTE: The Factory method is essentially the HOC above "partially applied" with the `Component` parameter. 
+
+**Have you got another HOC suggestion? PLEASE LEAVE A COMMENT I'd love to hear it!**
+
 #### Reusing everything seems rigid - did you always reuse web code?
 
-Almost never on an [atomic level](http://bradfrost.com/blog/post/atomic-web-design/#atoms), as this is closely tied to the platform.
+I reused components 90% of the time. The other 10% of the time I rewrote existing components because it was more convieniant.
+
+I almost never reused [atomic level](http://bradfrost.com/blog/post/atomic-web-design/#atoms) components. They are most closely tied to the platform, and thus subject to the implementation details. For instance browsers will receive a click on almost anything, while native only detects a press on a special tags.
 
 On a [molecular level](http://bradfrost.com/blog/post/atomic-web-design/#molecules), reuse happens ~90-95% of the time.
 The Main Nav and routes have **not** been reused - as they are not particularly complex.
 
-#### Whats the process for refactoring into Component + Factory?
+#### What is the process for refactoring into Component + Factory?
 
 I start with the container, and traced down to the lowest level components change them to use Factories. Then for each web component, I do the following tested steps:
 
@@ -333,7 +379,7 @@ After creating the Factory, native development is business-as-usual, except you 
 
 #### How is the project organised?
 
-Made an entirely new project for native, that has an npm dependency on the web project. Because `npm link` is not supported by the build system in, I've had to so some hacks. This probably won't scale to teams in its current form. Will either unify the code base, or improve the build system
+Made an entirely new project for native, that has an npm dependency on the web project. Because `npm link` is not supported by the build system in, I've had to so some hacks. This probably won't scale to teams in its current form. Will either unify the codebase, or improve the build system
 
 # Ongoing Questions
 
@@ -349,7 +395,7 @@ Made an entirely new project for native, that has an npm dependency on the web p
 Prior work: 
 
 * 2 months of coding (~ 12k LOC)
-* ~ 80% test coveragef
+* ~ 80% test coverage
 * limited mobile designs
 
 Tech used:
