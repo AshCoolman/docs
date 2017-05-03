@@ -12,7 +12,7 @@ categories: react, react-native, ios, android
 
 Every line of code is a liability, but not every line creates value. This is particuarly interesting when it comes to building native & web apps that offer the same features. Theoretically _all_ domain code can be shared beween _all_ platforms. That is to say, all platforms have the concept of the "Login button", and a "button pressed" event. But different platforms render the button and handle its events differently. 
 
-Rebuilding React web apps in [React Native](https://facebook.github.io/react-native/) has great code/effort reuse potential. I've been building a protoype that **takes code from an existing web app, and reuses it in a native app to provide the same features**. After rebuilding two features, I've settled on a technique, which I will describe in this article.
+Rebuilding React web apps in [React Native](https://facebook.github.io/react-native/) has great code/effort reuse potential. I've been building a protoype that **takes code from an existing web app, and maximally reuses it in a native app to provide the same features**. After rebuilding two features, I've settled on a technique, which I will describe in this article.
 
 # React recap
 
@@ -302,9 +302,55 @@ Bad things:
 
 # FAQ
 
+
+#### What is wrong with react-natives dynamic build system? ( Added 3-May-2017 )
+
+_This question was raised by my very talented workmate, Georgina Gilberth_
+
+Nothing per se, it is great for delivering different logic to different devices. The solution does not fit so well when I want deliver the same view code to different platforms.
+
+#### So why not use just use Higher order components? ( Added 3-May-2017)
+
+_This question was raised by my very talented workmate, Georgina Gilberth_
+
+First, its worth pointing out, I am trying to come up with a technique for reusing _all_ domain code - including the view logic contained in `render()`. If you don't want to reuse the view logic, the standard react-native development method should suit you fine.
+
+Secondly, you _can_ use HOC to acheive the same outcome. Here "elements" are passed to HOC, which then passes them to the component via props. YMMV but I dislike the use of props here. 
+
+```
+// ### Pseudocode ### 
+
+// Platform agnostic
+const ThumbnailAbstract = props => {
+  return <props.el.Wrapper>
+    <props.el.Label>{props.name}</props.el.Label>
+    <props.el.Content source={props.data} />
+  </props.el.Wrapper>
+};
+
+// Sub ComponentHOC HOC 
+function SubComponentHOC(Component, elements) {
+  return <Component el={elements} {...props} />
+}
+
+// Thumbnail web
+export { Text as Label, View as Wrapper, Image as Content } from 'react-native';
+
+const ThumbnailNative = ThumbnailHOC(
+  ThumbnailAbstract,
+  {Label, Wrapper, Content}
+);
+```
+
+NOTE: The Factory method is essentially the HOC above "partially applied" with the `Component` parameter. 
+
+**Have you got another HOC suggestion? PLEASE LEAVE A COMMENT I'd love to hear it!**
+
 #### Reusing everything seems rigid - did you always reuse web code?
 
-Almost never on an [atomic level](http://bradfrost.com/blog/post/atomic-web-design/#atoms), as this is closely tied to the platform.
+I reused components 90% of the time. The other 10% of the time I rewrote existing components because it was more convieniant.
+
+I almost never reused [atomic level](http://bradfrost.com/blog/post/atomic-web-design/#atoms) components. They are most closely tied to the platform, and thus subject to the implementation details. For instance browsers will receive a click on almost anything, while native only detects a press on a special tags.
 
 On a [molecular level](http://bradfrost.com/blog/post/atomic-web-design/#molecules), reuse happens ~90-95% of the time.
 The Main Nav and routes have **not** been reused - as they are not particularly complex.
