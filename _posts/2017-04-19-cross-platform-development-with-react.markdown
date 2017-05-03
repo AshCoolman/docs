@@ -307,13 +307,9 @@ Bad things:
 
 #### What is wrong with react-natives file-extension-based dynamic build system ? ( Added 3-May-2017 )
 
-_This question was raised by my very talented workmate, Georgina Gilberth_
-
 Nothing _per se_, it is great for delivering different logic to different devices. The solution does not fit so well when I want deliver the same view code to different platforms.
 
 #### So why not use just use Higher order components? ( Added 3-May-2017)
-
-_This question was raised by my very talented workmate, Georgina Gilberth_
 
 First, its worth pointing out, I am trying to come up with a technique for reusing _all_ domain code - including the view logic contained in `render()`. If you don't want to reuse the view logic, the standard react-native development method should suit you fine.
 
