@@ -76,6 +76,11 @@
 
 `git blame -L185,+5 -- ./<file>`
 
+* Log all changes to all with name
+
+`git log --all --full-history -- **/ove
+.js`
+
 * Remove sensitive info from git history:
 
 ```
