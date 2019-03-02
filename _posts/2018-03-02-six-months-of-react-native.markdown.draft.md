@@ -13,7 +13,7 @@ categories: react-native
 1. React Native:
     1. Is optimised for the common simple CRUD app
         1. File access is slow
-    1. Android is slow
+    1. Android is slow & has less support than iOS
     1. The ReactNative are now doing a great job at:
         1. Community communication
         1. Project governance
